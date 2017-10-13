@@ -6,22 +6,18 @@ import Burger from './NavbarBurger.vue'
 
 export default {
   name: 'Navbar',
-  functional: true,
   mixins: [colors, tag],
-  model: {
-    prop: 'active',
-    event: 'activate'
-  },
+  data: () => ({ active: false }),
   props: {
-    active: { default: false, type: Boolean },
     transparent: { default: false, type: Boolean },
     tag: { default: 'nav' },
     noBurger: { default: false, type: Boolean }
   },
-  render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const { active, color, transparent, tag, noBurger } = ctx.props
-    let { menu, default: brand, start: left, end: right } = ctx.slots()
+  render (h) {
+    const s = cssModule(this.$style)
+    const { color, transparent, tag, noBurger } = this.$props
+    const active = this.active
+    let { menu, default: brand, start: left, end: right } = this.$slots
 
     if (menu) { // menu goes to left.
       left = menu.concat(left || [])
@@ -33,15 +29,16 @@ export default {
     if (!noBurger) {
       brand = (brand || []).concat([
         h(Burger, { class: active && s('is-active'), on: {
-          click () {
-            ctx.data && ctx.data.on && ctx.data.on.activate && ctx.data.on.activate(!active)
+          click: () => {
+            this.activate(!active)
+            this.$listeners.activate && this.$listeners.activate(!active)
           }
         } })
       ])
     }
 
     return addStyleToVnode(
-      h(tag, ctx.data, [
+      h(tag, { props: this.$attrs, on: this.$listeners }, [
         /* Navbar Brand */
         needsBrand && h('div', { class: s('navbar-brand') }, brand),
         /* Navbar Meny */
@@ -55,6 +52,12 @@ export default {
         transparent && s('is-transparent')
       ]
     )
+  },
+
+  methods: {
+    activate (value) {
+      this.active = value
+    }
   }
 }
 </script>
