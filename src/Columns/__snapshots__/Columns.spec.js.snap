@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Columns.vue matches snapshot: {"centered":"vertically"} 1`] = `<!---->`;
+
+exports[`Columns.vue matches snapshot: {"centered":true} 1`] = `<!---->`;
+
+exports[`Columns.vue matches snapshot: {"gap":8} 1`] = `<!---->`;
+
+exports[`Columns.vue matches snapshot: {"gap":false} 1`] = `<!---->`;
+
+exports[`Columns.vue matches snapshot: {"multiline":true} 1`] = `<!---->`;
+
+exports[`Columns.vue matches snapshot: {} 1`] = `<!---->`;

@@ -1,0 +1,61 @@
+{
+  "name": "vue-bulma",
+  "version": "0.0.0",
+  "description": "Bulma based Vue components",
+  "scripts": {
+    "test": "jest",
+    "lint": "eslint --ext .js,.vue src",
+    "fix": "eslint --fix --ext .js,.vue src",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/watch-tower/gitboard.io.git"
+  },
+  "author": "Rahul Kadyan <hi@znck.me> (https://znck.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/watch-tower/gitboard.io/issues"
+  },
+  "homepage": "https://github.com/watch-tower/gitboard.io#readme",
+  "dependencies": {
+    "bulma": "^0.6.0",
+    "vue": "^2.4.4"
+  },
+  "devDependencies": {
+    "@storybook/vue": "^3.2.12",
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-vue-app": "^1.3.1",
+    "eslint": "^4.8.0",
+    "eslint-plugin-vue": "^3.13.1",
+    "font-awesome": "^4.7.0",
+    "jest": "^21.2.1",
+    "jest-serializer-vue": "^0.2.0",
+    "jest-vue": "^0.8.1",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
+    "vue-server-renderer": "^2.4.4",
+    "vue-template-compiler": "^2.4.4",
+    "vue-test-utils": "^1.0.0-beta.1"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "vue"
+    ],
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
+      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue"
+    },
+    "moduleNameMapper": {
+      "^@/(.*)$": "<rootDir>/src/$1"
+    },
+    "snapshotSerializers": [
+      "<rootDir>/node_modules/jest-serializer-vue"
+    ],
+    "mapCoverage": true
+  }
+}
