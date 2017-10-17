@@ -101,7 +101,8 @@ export function isIgnoredVnode (vnode) {
 export function addStyleToVnode(vnode, classes) {
   if (isIgnoredVnode(vnode)) return vnode
 
-  vnode.data = vnode.data || {}
+  if (!vnode.data) vnode.data = {}
+
   vnode.data.class = vnode.data.class ? toArray(vnode.data.class).concat(toArray(classes)) : toArray(classes)
 
   return vnode

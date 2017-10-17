@@ -20,7 +20,7 @@
   "homepage": "https://github.com/watch-tower/gitboard.io#readme",
   "dependencies": {
     "bulma": "^0.6.0",
-    "vue": "^2.4.4"
+    "vue": "^2.5.2"
   },
   "devDependencies": {
     "@storybook/vue": "^3.2.12",
@@ -36,9 +36,10 @@
     "jest-vue": "^0.8.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
-    "vue-server-renderer": "^2.4.4",
-    "vue-template-compiler": "^2.4.4",
-    "vue-test-utils": "^1.0.0-beta.1"
+    "vue-server-renderer": "^2.5.2",
+    "vue-template-compiler": "^2.5.2",
+    "vue-test-utils": "^1.0.0-beta.1",
+    "vue-loader": "^13.3.0"
   },
   "jest": {
     "moduleFileExtensions": [
