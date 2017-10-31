@@ -14,14 +14,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/watch-tower/gitboard.io.git"
+    "url": "git+https://github.com/znck/bulma.vue"
   },
   "author": "Rahul Kadyan <hi@znck.me> (https://znck.me)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/watch-tower/gitboard.io/issues"
+    "url": "https://github.com/znck/bulma.vue/issues"
   },
-  "homepage": "https://github.com/watch-tower/gitboard.io#readme",
+  "homepage": "https://github.com/znck/bulma.vue#readme",
   "dependencies": {
     "bulma": "^0.6.0",
     "vue": "^2.5.2"
