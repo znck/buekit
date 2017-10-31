@@ -6,7 +6,11 @@
     "test": "jest",
     "lint": "eslint --ext .js,.vue src",
     "fix": "eslint --fix --ext .js,.vue src",
-    "storybook": "start-storybook -p 9001 -c .storybook"
+    "storybook": "start-storybook -p 9001 -c .storybook",
+    "deploy": "npm run deploy:storybook",
+    "deploy:storybook": "surge",
+    "predeploy:storybook": "npm run build:storybook",
+    "build:storybook": "build-storybook -c .storybook -o .out/storybook"
   },
   "repository": {
     "type": "git",
