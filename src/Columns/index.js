@@ -1,7 +1,7 @@
-import Columns from './Columns.vue'
+import Row from './Columns.vue'
 import Column from './Column.vue'
 
 export {
   Column,
-  Columns
+  Row
 }
