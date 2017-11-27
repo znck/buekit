@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown.vue matches snapshot 1`] = `
+<div class="dropdown">
+    <div class="dropdown-trigger"><button class="button"><span></span><span class="icon"><i class="fa fa-angle-down"></i></span></button></div>
+    <div class="dropdown-menu">
+        <div class="dropdown-content"></div>
+    </div>
+</div>
+`;

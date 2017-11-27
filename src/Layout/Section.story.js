@@ -1,16 +1,16 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Section from './Section.vue'
 import Container from './Container.vue'
 
-const components = { Section }
+const components = {Section}
 
-function render (template) {
-  return { template, components }
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Section.name, module)
-  .add('default', () => render (
+  .add('default', () => render(
     `
     <Section>
       <Container>

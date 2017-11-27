@@ -1,14 +1,14 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Hero from './Hero.vue'
 import Container from './Container.vue'
 
 import 'bulma'
 
-const components = { Hero, Container }
+const components = {Hero, Container}
 
-function render (template) {
-  return { template, components }
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Hero.name, module)

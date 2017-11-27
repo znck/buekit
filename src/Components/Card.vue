@@ -1,11 +1,11 @@
 <script>
 import { cssModule, mergeData, toArray, addStyleToVnode } from '../utils'
-import { tag } from '../mixins'
+import { createTag } from '../mixins'
 
 export default {
   name: 'Card',
   functional: true,
-  mixins: [tag],
+  mixins: [createTag()],
   props: {
     title: { type: String },
     centered: { default: false, type: Boolean }
@@ -20,7 +20,7 @@ export default {
 
     if (icon) icon = icon[0]
     if (heading) heading = heading[0]
-    
+
     const headStyle = [s('card-header-title'), centered && s('is-centered')]
     const footLinkStyle = [s('card-footer-item')]
 

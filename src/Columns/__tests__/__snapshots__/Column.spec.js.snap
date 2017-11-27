@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Column.vue matches snapshot: {"narrow":true} 1`] = `<div class="column is-narrow"></div>`;
+
+exports[`Column.vue matches snapshot: {"narrow.mobile":true,"narrow.desktop":true} 1`] = `<div class="column is-narrow-mobile is-narrow-desktop"></div>`;
+
+exports[`Column.vue matches snapshot: {"narrow.mobile":true} 1`] = `<div class="column is-narrow-mobile"></div>`;
+
+exports[`Column.vue matches snapshot: {"offset":"half","offset.mobile":3} 1`] = `<div class="column is-offset-half is-offset-3-mobile"></div>`;
+
+exports[`Column.vue matches snapshot: {"offset":"half"} 1`] = `<div class="column is-offset-half"></div>`;
+
+exports[`Column.vue matches snapshot: {"offset":2} 1`] = `<div class="column is-offset-2"></div>`;
+
+exports[`Column.vue matches snapshot: {"size":"half","size.mobile":12} 1`] = `<div class="column is-half is-12-mobile"></div>`;
+
+exports[`Column.vue matches snapshot: {"size":"half"} 1`] = `<div class="column is-half"></div>`;
+
+exports[`Column.vue matches snapshot: {"size":3} 1`] = `<div class="column is-3"></div>`;
+
+exports[`Column.vue matches snapshot: {} 1`] = `<div class="column"></div>`;

@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import xContent from './Content.vue'
 
-const components = { xContent }
-function render (template) {
-  return { template, components }
+const components = {xContent}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(xContent.name, module)

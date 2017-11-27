@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import xProgress from './Progress.vue'
 
-const components = { xProgress }
-function render (template) {
-  return { template, components }
+const components = {xProgress}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(xProgress.name, module)

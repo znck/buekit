@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Pagination from './Pagination.vue'
 
 import 'bulma'
 
-const components = { Pagination }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem">${template}</div>`, components }
+const components = {Pagination}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem">${template}</div>`, components}
 }
 
 storiesOf(Pagination.name, module)

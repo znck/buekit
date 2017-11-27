@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Delete from './Delete.vue'
 
-const components = { Delete }
-function render (template) {
-  return { template, components }
+const components = {Delete}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Delete.name, module)

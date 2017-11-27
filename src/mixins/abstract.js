@@ -1,5 +1,5 @@
 export default {
-  props: {
-    abstract: { default: false, type: Boolean }
-  }
+	props: {
+		abstract: {default: false, type: Boolean}
+	}
 }

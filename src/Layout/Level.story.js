@@ -1,13 +1,13 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Level from './Level.vue'
 
 import 'bulma'
 
-const components = { Level }
+const components = {Level}
 
-function render (template) {
-  return { template, components }
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Level.name, module)
@@ -47,7 +47,7 @@ storiesOf(Level.name, module)
     )
   )
   .add(
-    'centered', () => render (
+    'centered', () => render(
       `
       <Level tag=nav device=mobile>
         <Level item class="has-text-centered">

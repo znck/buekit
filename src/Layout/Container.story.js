@@ -1,24 +1,24 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Container from './Container.vue'
 
-const components = { Container }
+const components = {Container}
 
 // <-- Paragraph Lib.
 let i = 0
-let wrap = 4
+const wrap = 4
 const colors = ['#209cee', '#23d160', '#ffdd57', '#ff3860']
-const color = (z) => colors[typeof z === 'number' ? z % wrap :  i++ % wrap]
+const color = z => colors[typeof z === 'number' ? z % wrap : i++ % wrap]
 const p = (content, c) => `<p style="padding: 1.25rem; background: ${color(c)}; color: white; text-align: center">${content}</p>`
 // -->
 
-function render (template) {
-  return { template, components }
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Container.name, module)
   .add(
-    'default', () => render (
+    'default', () => render(
       `
       <div>
         <Container>

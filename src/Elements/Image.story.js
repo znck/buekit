@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import xImage from './Image.vue'
 
-const components = { xImage }
-function render (template) {
-  return { template, components }
+const components = {xImage}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(xImage.name, module)

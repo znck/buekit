@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Container.vue matches snapshot 1`] = `<div class="container"></div>`;
+
+exports[`Container.vue matches snapshot 2`] = `<div class="container"></div>`;

@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Pagination.vue matches snapshot 1`] = `
+<div class="pagination"><a class="pagination-previous">Previous</a><a disabled="disabled" class="pagination-next">Next</a>
+    <ul class="pagination-list">
+        <li><a class="pagination-link">1</a></li>
+        <li><a class="pagination-link">2</a></li>
+        <li><a class="pagination-link">3</a></li>
+        <li><span class="pagination-ellipsis">&hellip;</span></li>
+        <li><a class="pagination-link is-current"></a></li>
+    </ul>
+</div>
+`;

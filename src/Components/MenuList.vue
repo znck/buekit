@@ -1,16 +1,17 @@
 <script>
-import { cssModule, mergeData, addStyleToVnode, isIgnoredVnode } from '../utils'
+import { style, styleResolver, addStyleToVnode, isIgnoredVnode } from '../utils'
 
 export default {
   name: 'MenuList',
   functional: true,
   render (h, ctx) {
+    const _ = styleResolver(ctx.$style)
     const { tag } = ctx.props
 
     return addStyleToVnode(
-      h('ul', ctx.data, ctx.children.map(
+      h('ul', ctx.data, (ctx.children || []).map(
         node => isIgnoredVnode(node) || node.tag === 'li' ? node : h('li', {}, [node])
-      )), ctx.$style['menu-list']
+      )),  _('menu-list')
     )
   }
 }

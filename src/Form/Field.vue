@@ -20,7 +20,7 @@ export default {
         (label || slotLABEL) && h('label', {
           class: [s('label'), s('is-' + size)]
         }, slotLABEL || label),
-        ...content,
+        ...(content || []),
         (help || slotHELP) && h('p', {
           class: [s('help'), s('is-' + color)]
         }, slotHELP || help)

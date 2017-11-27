@@ -1,17 +1,16 @@
 <script>
-import { mergeData, cssModule } from '../utils'
-import { colors, sizes, tag } from '../mixins'
+import { style, styleResolver } from '../utils'
+import PropTypes from '@znck/prop-types'
 
 export default {
   name: 'Tags',
   functional: true,
-  mixins: [tag],
   props: {
-    tag: { default: 'span' },
-    addons: { default: false, type: Boolean }
+    tag: PropTypes.string.value('span'),
+    addons: PropTypes.bool.value(false)
   },
-  render (h, ctx) {
-    const s = cssModule(ctx.$style)
+  render (h, ctx = {}) {
+    const s = styleResolver(ctx.$style)
     const { addons, tag } = ctx.props
 
     const styles = [
@@ -19,7 +18,7 @@ export default {
       addons && s('has-addons')
     ]
 
-    return h(tag, mergeData(ctx.data, { class: styles }), ctx.children)
+    return style(h(tag, ctx.data, ctx.children), styles)
   }
 }
 </script>

@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Card from './Card.vue'
 import xImage from '../Elements/Image.vue'
@@ -8,9 +8,9 @@ import Subtitle from '../Elements/Subtitle.vue'
 import xContent from '../Elements/Content.vue'
 import xTitle from '../Elements/Title.vue'
 
-const components = { Card, xImage, Media, Icon, Subtitle, xTitle, xContent }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem; width: 400px">${template}</div>`, components }
+const components = {Card, xImage, Media, Icon, Subtitle, xTitle, xContent}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem; width: 400px">${template}</div>`, components}
 }
 
 storiesOf(Card.name, module)

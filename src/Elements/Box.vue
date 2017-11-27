@@ -1,11 +1,11 @@
 <script>
-import { tag, abstract } from '../mixins'
+import { createTag, abstract } from '../mixins'
 import AbstractBox from './AbstractBox.vue'
 
 export default {
   name: 'Box',
   functional: true,
-  mixins: [abstract, tag],
+  mixins: [abstract, createTag()],
   render (h, ctx) {
     const { abstract, tag } = ctx.props
 

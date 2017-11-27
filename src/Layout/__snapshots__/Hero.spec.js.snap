@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Hero.vue matches snapshot 1`] = `
+<section class="hero">
+    <div class="hero-body"></div>
+</section>
+`;
+
+exports[`Hero.vue matches snapshot 2`] = `
+<section class="hero">
+    <div class="hero-body"></div>
+</section>
+`;
+
+exports[`Hero.vue matches snapshot 3`] = `
+<section class="hero">
+    <div class="hero-body"></div>
+</section>
+`;
+
+exports[`Hero.vue matches snapshot 4`] = `
+<section class="hero">
+    <div class="hero-body"></div>
+</section>
+`;
+
+exports[`Hero.vue matches snapshot 5`] = `
+<section class="hero">
+    <div class="hero-body"></div>
+</section>
+`;
+
+exports[`Hero.vue matches snapshot 6`] = `
+<section class="hero">
+    <div class="hero-body"></div>
+</section>
+`;

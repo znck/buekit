@@ -15,7 +15,7 @@ import Panel from './Panel.vue'
 import PanelBlock from './PanelBlock.vue'
 import Tabs from './Tabs.vue'
 
-export default {
+export {
   Breadcrumb,
   Card,
   Dropdown,

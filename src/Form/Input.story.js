@@ -1,16 +1,16 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import xInput from './Input.vue'
 import Field from './Field.vue'
 import Control from './Control.vue'
 
-const components = { Field, xInput, Control }
-function render (template) {
-  return { 
-    data: () => ({ value: '' }),
-    template: `<div style="padding: 1.25rem">${template}</div>`,
-    components
-  }
+const components = {Field, xInput, Control}
+function render(template) {
+	return {
+		data: () => ({value: ''}),
+		template: `<div style="padding: 1.25rem">${template}</div>`,
+		components
+	}
 }
 
 storiesOf(xInput.name, module)

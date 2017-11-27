@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Active from '../Abstract/Active.vue'
 import Panel from './Panel.vue'
@@ -6,9 +6,9 @@ import PanelBlock from './PanelBlock.vue'
 
 import 'bulma'
 
-const components = { Active, Panel, PanelBlock }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem; width: 480px">${template}</div>`, components }
+const components = {Active, Panel, PanelBlock}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem; width: 480px">${template}</div>`, components}
 }
 
 storiesOf(Panel.name, module)

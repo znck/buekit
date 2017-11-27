@@ -1,17 +1,17 @@
-import { toMap } from '../utils'
+import {toMap} from '../utils'
 
 const colors = toMap([
   // Standard colors.
-  'primary', 'info', 'success', 'warning', 'danger', 'dark', 'light',
+	'primary', 'info', 'success', 'warning', 'danger', 'dark', 'light',
   // Button only colors.
-  'white', 'link', 'text'
+	'white', 'link', 'text'
 ])
 
 export default {
-  props: {
-    color: {
-      type: String,
-      validator: color => color === undefined || color in colors
-    }
-  }
+	props: {
+		color: {
+			type: String,
+			validator: color => color === undefined || color in colors
+		}
+	}
 }

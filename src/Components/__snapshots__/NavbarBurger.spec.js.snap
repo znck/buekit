@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavbarBurger.vue matches snapshot 1`] = `<button class="button navbar-burger"><span></span><span></span><span></span></button>`;

@@ -1,13 +1,12 @@
 <script>
 import { cssModule, mergeData } from '../utils'
-import { colors, tag } from '../mixins'
+import { colors, createTag } from '../mixins'
 
 export default {
   name: 'Button',
   functional: true,
-  mixins: [colors, tag],
+  mixins: [colors, createTag('button')],
   props: {
-    tag: { default: 'button' },
     outlined: { type: Boolean, default: false },
     inverted: { type: Boolean, default: false },
     hovered: { type: Boolean, default: false },

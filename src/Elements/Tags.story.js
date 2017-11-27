@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Tags from './Tags.vue'
 import Tag from './Tag.vue'
 
-const components = { Tag, Tags }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem">${template}</div>`, components }
+const components = {Tag, Tags}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem">${template}</div>`, components}
 }
 
 storiesOf(Tags.name, module)

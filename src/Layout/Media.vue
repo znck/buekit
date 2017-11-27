@@ -1,22 +1,25 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { tag } from '../mixins'
+import { style, styleResolver } from '../utils'
+import PropTypes from '@znck/prop-types'
 
 export default {
   name: 'Media',
   functional: true,
-  mixins: [tag],
+  props: {
+    tag: PropTypes.string.value('div')
+  },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const s = styleResolver(ctx.$style)
     const { tag } = ctx.props
     const classes = [s('media')]
     const slots = ctx.slots()
 
-    return h(tag, mergeData({ class: classes }, ctx.data), [
-      slots.left && slots.left.length && h('figure', { class: s('media-left') }, slots.left),
-      h('div', { class: s('media-content') }, slots.default),
-      slots.right && slots.right.length && h('div', { class: s('media-right') }, slots.right)
-    ].filter(el => el))
+    return style(
+        h(tag, ctx.data, [
+        slots.left && slots.left.length && h('figure', { class: s('media-left') }, slots.left),
+        h('div', { class: s('media-content') }, slots.default),
+        slots.right && slots.right.length && h('div', { class: s('media-right') }, slots.right)
+      ].filter(el => el)), classes)
   }
 }
 </script>

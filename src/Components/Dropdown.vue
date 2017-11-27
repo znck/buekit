@@ -1,6 +1,6 @@
 <script>
 import { cssModule, mergeData, toArray, addStyleToVnode, isFunction } from '../utils'
-import { tag } from '../mixins'
+import { createTag } from '../mixins'
 import Button from '../Elements/Button.vue'
 import Icon from '../Elements/Icon.vue'
 import ClickAway from '../Abstract/ClickAway.vue'
@@ -8,13 +8,13 @@ import ClickAway from '../Abstract/ClickAway.vue'
 export default {
   name: 'Dropdown',
   functional: true,
-  mixins: [tag],
+  mixins: [createTag()],
   model: {
     prop: 'open',
     event: 'open'
   },
   props: {
-    icon: { default: 'fa fa-angle-down', type: String },    
+    icon: { default: 'fa fa-angle-down', type: String },
     open: { type: Boolean, required: true },
     title: { type: String },
     right: { default: false, type: Boolean },
@@ -51,7 +51,7 @@ export default {
       h(tag, data, [
         /* Trigger */
         h('div', {
-          class: s('dropdown-trigger'), 
+          class: s('dropdown-trigger'),
           on: { click: fireOpen }
         }, trigger),
         /* Menu */
@@ -63,7 +63,7 @@ export default {
           ))
         ])
       ])
-    
+
     if (open) return h(ClickAway, { on: { handle () { open && fireOpen() } } }, [ el ])
 
     return el

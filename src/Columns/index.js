@@ -1,7 +1,9 @@
-import Row from './Columns.vue'
+import Columns from './Columns.vue'
 import Column from './Column.vue'
 
 export {
   Column,
-  Row
+  Columns
 }
+
+export const Row = Columns // Export as row for better api.

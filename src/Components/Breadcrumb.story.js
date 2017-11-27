@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Breadcrumb from './Breadcrumb.vue'
 
-const components = { Breadcrumb }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem">${template}</div>`, components }
+const components = {Breadcrumb}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem">${template}</div>`, components}
 }
 
 storiesOf(Breadcrumb.name, module)

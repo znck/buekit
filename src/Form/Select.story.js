@@ -1,19 +1,19 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import xSelect from './Select.vue'
 import Field from './Field.vue'
 import Control from './Control.vue'
 
-const components = { Control, Field, xSelect }
-function render (template) {
-  return { 
-    data: () => ({
-      value: 'Select dropdown',
-      value2: ['Select dropdown'],
-    }),
-    template: `<div style="padding: 1.25rem">${template}</div>`, 
-    components 
-  }
+const components = {Control, Field, xSelect}
+function render(template) {
+	return {
+		data: () => ({
+			value: 'Select dropdown',
+			value2: ['Select dropdown']
+		}),
+		template: `<div style="padding: 1.25rem">${template}</div>`,
+		components
+	}
 }
 
 storiesOf(xSelect.name, module)

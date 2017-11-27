@@ -1,15 +1,14 @@
 <script>
 import { cssModule, mergeData } from '../utils'
-import { tag } from '../mixins'
+import PropTypes from '@znck/prop-types'
 
 export default {
   name: 'Footer',
   functional: true,
-  mixins: [tag],
   props: {
-    tag: { default: 'footer' }
+    tag: PropTypes.string.value('footer')
   },
-  render (h, ctx) {
+  render (h, ctx = {}) {
     const s = cssModule(ctx.$style)
     const { tag } = ctx.props
     const classes = [s('footer')]

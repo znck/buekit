@@ -1,10 +1,10 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import xMessage from './Message.vue'
 
-const components = { xMessage }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem">${template}</div>`, components }
+const components = {xMessage}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem">${template}</div>`, components}
 }
 
 storiesOf(xMessage.name, module)

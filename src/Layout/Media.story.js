@@ -1,14 +1,14 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Media from './Media.vue'
 import Level from './Level.vue'
 
 import 'bulma'
 
-const components = { Media, Level }
+const components = {Media, Level}
 
-function render (template) {
-  return { template, components }
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Media.name, module)
@@ -47,7 +47,7 @@ storiesOf(Media.name, module)
       `
     ))
   .add(
-    'nesting', () => render (
+    'nesting', () => render(
       `
       <div style="margin: 1.25rem">
         <Media tag=article>

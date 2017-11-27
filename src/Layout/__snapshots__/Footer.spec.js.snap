@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer.vue matches snapshot 1`] = `<footer class="footer"></footer>`;

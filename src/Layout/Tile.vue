@@ -1,36 +1,35 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { tag } from '../mixins'
+import { style, styleResolver } from '../utils'
+import PropTypes from '@znck/prop-types'
 
 const _isInt = /^[\d]+$/
 
 export default {
   name: 'Tile',
   functional: true,
-  mixins: [tag],
   props: {
-    size: {
-      default: '',
-      type: [Number, String],
-      validate: size => _isInt.match('' + size) && (0 < Number(size)) && (Number(size) <= 12)
-    },
-    ancestor: { type: Boolean, default: false },
-    parent: { type: Boolean, default: false },
-    child: { type: Boolean, default: false },
-    vertical: { type: Boolean, default: false }
+    size: PropTypes.oneOfType(PropTypes.number, PropTypes.string)
+      .validate(
+        value => (size => 0 < size && size <= 12)(Number(value))
+      ),
+    ancestor: PropTypes.bool.value(false),
+    parent: PropTypes.bool.value(false),
+    child: PropTypes.bool.value(false),
+    vertical: PropTypes.bool.value(false)
   },
-  render (h, ctx) {
-    const s = cssModule(ctx.$style)
+  render (h, ctx = {}) {
+    const s = styleResolver(ctx.$style)
     const { size, tag, ancestor, parent, child, vertical } = ctx.props
-    const classes = [s('tile')]
 
-    if (size != '') classes.push(s('is-' + size))
-    if (ancestor) classes.push(s('is-ancestor'))
-    else if (parent) classes.push(s('is-parent'))
-    else if (child) classes.push(s('is-child'))
-    if (vertical) classes.push(s('is-vertical'))
-
-    return h(tag, mergeData({ class: classes }, ctx.data), ctx.children)
+    return style(
+      h(tag, ctx.data, ctx.children),
+      s('tile'),
+      size !== '' && s('is-' + size),
+      ancestor && s('is-ancestor'),
+      parent && s('is-parent'),
+      child && s('is-child'),
+      vertical && s('is-vertical')
+    )
   }
 }
 </script>

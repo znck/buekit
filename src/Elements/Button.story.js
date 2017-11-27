@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import xButton from './Button.vue'
 
-const components = { xButton }
+const components = {xButton}
 
-function render (template) {
-  return { template, components }
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(xButton.name, module)

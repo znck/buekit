@@ -1,13 +1,13 @@
 <script>
 import { mergeData, cssModule, toMap } from '../utils'
-import { tag } from '../mixins'
+import { createTag } from '../mixins'
 
 const types = toMap(['fluid', 'widescreen', 'fullhd'])
 
 export default {
   name: 'Container',
   functional: true,
-  mixins: [tag],
+  mixins: [createTag()],
   props: {
     type: {
       type: String,

@@ -1,25 +1,25 @@
 <script>
-import { addStyleToVnode, cssModule } from '../utils'
-import { tag } from '../mixins'
+import { style, styleResolver } from '../utils'
+import { createTag } from '../mixins'
 
 export default {
   name: 'Panel',
   functional: true,
-  mixins: [tag],
+  mixins: [createTag('nav')],
   props: {
-    tag: { default: 'nav' },
     title: { type: String }
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const s = styleResolver(ctx.$style)
     const { tag, title } = ctx.props
-    const { title: slot, default: content } = ctx.slots()
+    const { title: slot, default: content = [] } = ctx.slots()
 
-    return addStyleToVnode(
+    return style(
       h(tag, ctx.data, [
         h('p', { class: s('panel-heading') }, slot || title),
         ...content
-      ]), s('panel')
+      ]),
+      s('panel')
     )
   }
 }

@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Subtitle from './Subtitle.vue'
 import Title from './Title.vue'
 
-const components = { Subtitle, Title }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem">${template}</div>`, components }
+const components = {Subtitle, Title}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem">${template}</div>`, components}
 }
 
 storiesOf(Title.name, module)

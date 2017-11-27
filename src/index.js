@@ -12,20 +12,21 @@ export * from './Elements'
 export * from './Form'
 export * from './Layout'
 
-export function register (Vue, components, prefix = 'B') {
-  Object.entries(components).forEach(
+export function register(Vue, components, prefix = 'Bu') {
+	Object.entries(components).forEach(
     (name, component) => Vue.component(prefix + name, component)
   )
 }
 
-export default function BulmaVue (Vue, options) {
-  const components = {
-    ...Abstract,
-    ...Columns,
-    ...Components,
-    ...Elements,
-    ...Layout
-  }
+export default function BulmaVue(Vue, options) {
+	const components = {
+		...Abstract,
+		...Columns,
+		...Components,
+		...Elements,
+		...Form,
+		...Layout
+	}
 
-  register(Vue, components, (ptions && options.prefix) || 'B')
+	register(Vue, components, (ptions && options.prefix) || 'B')
 }

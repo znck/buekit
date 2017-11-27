@@ -1,13 +1,14 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
+
+import Active from '../Abstract/Active.vue'
 
 import xMenu from './Menu.vue'
 import MenuLabel from './MenuLabel.vue'
 import MenuList from './MenuList.vue'
-import Active from '../Abstract/Active.vue'
 
-const components = { xMenu, MenuLabel, MenuList, Active }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem; width: 300px">${template}</div>`, components }
+const components = {xMenu, MenuLabel, MenuList, Active}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem; width: 300px">${template}</div>`, components}
 }
 
 storiesOf(xMenu.name, module)
@@ -20,7 +21,7 @@ storiesOf(xMenu.name, module)
         <!-- should be ignored -->
         <a>Customers</a>
       </MenuList>
-      
+
       <MenuLabel>Administration</MenuLabel>
       <MenuList>
         <a>Team Settings</a>
@@ -38,7 +39,7 @@ storiesOf(xMenu.name, module)
         <a>Cloud Storage Environment Settings</a>
         <a>Authentication</a>
       </MenuList>
-      
+
       <MenuLabel>Transactions</MenuLabel>
       <MenuList class="menu-list">
         <a>Payments</a>

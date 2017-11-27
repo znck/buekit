@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Modal from './Modal.vue'
 import xButton from '../Elements/Button.vue'
@@ -11,13 +11,13 @@ import Icon from '../Elements/Icon.vue'
 
 import 'bulma'
 
-const components = { Modal, xButton, Media, xImage, Box, xContent, Level, Icon }
-function render (template) {
-  return {
-    data: () => ({ open: false }),
-    template: `<div style="padding: 1.25rem">${template}</div>`,
-    components
-  }
+const components = {Modal, xButton, Media, xImage, Box, xContent, Level, Icon}
+function render(template) {
+	return {
+		data: () => ({open: false}),
+		template: `<div style="padding: 1.25rem">${template}</div>`,
+		components
+	}
 }
 
 storiesOf(Modal.name, module)

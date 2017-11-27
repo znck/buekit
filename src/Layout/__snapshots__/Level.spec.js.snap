@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Level.vue matches snapshot 1`] = `<div class="level"></div>`;
+
+exports[`Level.vue matches snapshot 2`] = `<div class="level is-mobile"></div>`;
+
+exports[`Level.vue matches snapshot 3`] = `<div class="level-left"></div>`;
+
+exports[`Level.vue matches snapshot 4`] = `<div class="level-right"></div>`;
+
+exports[`Level.vue matches snapshot 5`] = `<div class="level-item"></div>`;

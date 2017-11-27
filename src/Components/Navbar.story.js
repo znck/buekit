@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Navbar from './Navbar.vue'
 import NavbarItem from './NavbarItem.vue'
@@ -6,9 +6,9 @@ import NavbarDropdown from './NavbarDropdown.vue'
 
 import 'bulma'
 
-const components = { Navbar, NavbarItem, NavbarDropdown }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem">${template}</div>`, components }
+const components = {Navbar, NavbarItem, NavbarDropdown}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem">${template}</div>`, components}
 }
 
 storiesOf('Navbar', module)

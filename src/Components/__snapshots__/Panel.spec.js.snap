@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Panel.vue matches snapshot 1`] = `
+<nav class="panel">
+    <p class="panel-heading"></p>
+</nav>
+`;

@@ -1,17 +1,18 @@
 <script>
+import PropTypes from '@znck/prop-types'
 import { cssModule, addStyleToVnode } from '../utils'
-import { colors, sizes, tag } from '../mixins'
+import { colors, sizes } from '../mixins'
 
 import Delete from '../Elements/Delete.vue'
 
 export default {
   name: 'Message',
   functional: true,
-  mixins: [colors, sizes, tag],
+  mixins: [colors, sizes],
   props: {
-    tag: { default: 'article' },
-    title: { type: String },
-    omit: { default: false, type: Boolean }
+    tag: PropTypes.string.value('span'),
+    title: PropTypes.string,
+    omit: PropTypes.bool.value(false)
   },
   render (h, ctx) {
     const s = cssModule(ctx.$style)

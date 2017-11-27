@@ -1,15 +1,14 @@
 <script>
 import { cssModule, mergeData, toMap } from '../utils'
-import { sizes, tag } from '../mixins'
+import { sizes, createTag } from '../mixins'
 
 const separators = toMap(['succeeds', 'dot', 'bullet', 'arrow'])
 
 export default {
   name: 'Breadcrumb',
   functional: true,
-  mixins: [sizes, tag],
+  mixins: [sizes, createTag('nav')],
   props: {
-    tag: { default: 'nav' },
     centered: { default: false, type: Boolean },
     pushed: { default: false, type: Boolean },
     separator: { type: String, validate: separator => separator === undefined || separator in separators }
@@ -26,7 +25,7 @@ export default {
       separator && s('has-' + separator + '-separator')
     ]
 
-    let { wrapper, default: links } = ctx.slots()
+    let { wrapper, default: links = [] } = ctx.slots()
 
     if (!wrapper || !wrapper.length) {
       const k = links.length - 1

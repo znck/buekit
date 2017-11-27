@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Icon from './Icon.vue'
 
 import 'bulma'
 
-const components = { Icon }
-function render (template) {
-  return { template, components }
+const components = {Icon}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Icon.name, module)

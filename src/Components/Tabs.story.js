@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Tabs from './Tabs.vue'
 import Icon from '../Elements/Icon.vue'
 
-const components = { Tabs, Icon }
-function render (template) {
-  return { template: `<div style="padding: 1.25rem">${template}</div>`, components }
+const components = {Tabs, Icon}
+function render(template) {
+	return {template: `<div style="padding: 1.25rem">${template}</div>`, components}
 }
 
 storiesOf(Tabs.name, module)

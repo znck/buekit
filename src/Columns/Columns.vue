@@ -1,67 +1,77 @@
 <script>
-import { validate, isNumber, isBoolean, isResponsiveType, toArray, toMap, mergeData, cssModule } from '../utils'
-import { tag } from '../mixins'
+import PropType, { normalize } from '@znck/prop-types'
+import { isBoolean } from 'lodash'
 
-const horizontally = toMap(['horizontally', 'both'])
-const vertically = toMap(['vertically', 'both'])
-const _isGap = /^[0-8]$/
+import { styleResolver, style } from '../utils'
+import { createTag } from '../mixins'
+
+let normalizer
+const props = (props, _) => {
+  normalizer = normalizer || normalize(props, (name, value) => {
+    switch (name) {
+      case 'gap': return value === false ?
+        [_('is-gapless')] :
+        (value !== true ? [_('is-variable'), _(`is-${value}`)] : [])
+      case 'tag': return value
+      default: return value && _(`is-${name}`)
+    }
+  })
+
+  return normalizer(props)
+}
 
 export default {
   name: 'Columns',
   functional: true,
-  mixins: [tag],
+  mixins: [createTag()],
   props: {
-    centered: {
-      default: false,
-      type: [Boolean, String],
-      validate: value => isBoolean(value) || (value in horizontally || value in vertically)
-    },
-
-    device: {
-      default: '',
-      type: String,
-      validate: value => value === '' || isResponsiveType(value)
-    },
-
-    gap: {
-      default: true,
-      type: [Boolean, Number],
-      validate (value) {
-        return _isGap.match(value) || isBoolean(value)
-      }
-    },
-
-    multiline: {
-      default: false,
-      type: Boolean
-    }
+    /**
+     * Put column elements in center horizontally.
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    centered: PropType.bool.value(false),
+    /**
+     * Put column elements in center vertically.
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    vcentered: PropType.bool.value(false),
+    /**
+     * Activate columns from mobile up.
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    mobile: PropType.bool.value(false),
+    /**
+     * Activate columns for desktop only.
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    desktop: PropType.bool.value(false),
+    /**
+     * The space on each side of a column.
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    gap: PropType.oneOfType(
+      PropType.bool,
+      PropType.number.validate(v => 0 <= v && v <= 8),
+      PropType.string.validate(v => /^[0-8]$/.test(v))
+    ).value(true),
+    /**
+     * Wrap column elements that would fit in a single row.
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    multiline: PropType.bool.value(false),
   },
-  
+
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const styles = [s('columns')]
+    const _ = styleResolver(ctx.$style)
+    const { tag, ...rest } = props(ctx.props, _)
 
-    const { gap, multiline, device, centered, tag } = ctx.props
-
-    // multiline
-    if (multiline) styles.push(s('is-multiline'))
-
-    // responsiveness
-    if (device) styles.push(s('is-' + device))
-    
-    // gap
-    if (gap === false) {
-      styles.push(s('is-gapless'))
-    } else if (gap !== true) {
-      styles.push(s('is-variable'))
-      styles.push(s('is-' + gap))
-    }
-
-    // centered
-    if (centered in horizontally || centered === true || centered === '') styles.push(s('is-centered'))
-    if (centered in vertically) styles.push(s('is-vcentered'))
-    
-    return h(tag, mergeData({ class: styles }, ctx.data), ctx.children)
+    return style(h(tag, ctx.data, ctx.children), _('columns'), Object.values(rest))
   }
 }
 </script>

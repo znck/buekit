@@ -1,17 +1,17 @@
-import { toMap } from '../utils'
+import {toMap} from '../utils'
 
 const sizes = toMap([
   // Standard sizes.
-  'small', 'medium', 'large',
+	'small', 'medium', 'large',
   // Hero only size.
-  'fullheight'
+	'fullheight'
 ])
 
 export default {
-  props: {
-    size: {
-      type: String,
-      validator: size => size === undefined || size in sizes
-    }
-  }
+	props: {
+		size: {
+			type: String,
+			validator: size => size === undefined || size in sizes
+		}
+	}
 }

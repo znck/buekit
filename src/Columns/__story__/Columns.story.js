@@ -1,19 +1,19 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Columns from './Columns.vue'
 import Column from './Column.vue'
 
 let i = 0
 let wrap = 4
-const components = { Columns, Column }
+const components = {Columns, Column}
 const colors = ['#209cee', '#23d160', '#ffdd57', '#ff3860']
-const color = (z) => colors[typeof z === 'number' ? z % wrap :  i++ % wrap]
+const color = z => colors[typeof z === 'number' ? z % wrap : i++ % wrap]
 const p = (content, c) => `<p style="padding: 1.25rem; background: ${color(c)}; color: white; text-align: center">${content}</p>`
 const render = (template, limit = 4) => {
-  i = 0
-  wrap = limit
+	i = 0
+	wrap = limit
 
-  return { template, components }
+	return {template, components}
 }
 
 storiesOf(Columns.name, module)
@@ -297,7 +297,7 @@ storiesOf(Columns.name, module)
     )
   )
   .add(
-    'multiline', () => render (
+    'multiline', () => render(
       `
       <Columns multiline>
         <Column size=3>${p('1st Column')}</Column>

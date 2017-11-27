@@ -1,17 +1,17 @@
 <script>
-import { cssModule, mergeData, addStyleToVnode } from '../utils'
-import { tag } from '../mixins'
+import { styleResolver, style } from '../utils'
+import { createTag } from '../mixins'
 
 export default {
   name: 'Menu',
   functional: true,
-  mixins: [tag],
-  props: { tag: { default: 'aside' } },
+  mixins: [createTag('aside')],
   render (h, ctx) {
+    const _ = styleResolver(ctx.$style)
     const { tag } = ctx.props
 
-    return addStyleToVnode(
-      h(tag, ctx.data, ctx.children), ctx.$style['menu']
+    return style(
+      h(tag, ctx.data, ctx.children), _('menu')
     )
   }
 }

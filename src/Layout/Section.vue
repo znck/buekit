@@ -1,13 +1,14 @@
 <script>
+import PropTypes from '@znck/prop-types'
 import { cssModule, mergeData } from '../utils'
-import { sizes, tag } from '../mixins'
+import { sizes } from '../mixins'
 
 export default {
   name: 'Section',
   functional: true,
-  mixins: [sizes, tag],
+  mixins: [sizes],
   props: {
-    tag: { default: 'section' }
+    tag: PropTypes.string.value('section')
   },
   render (h, ctx) {
     const s = cssModule(ctx.$style)

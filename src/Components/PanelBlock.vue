@@ -1,11 +1,11 @@
 <script>
 import { addStyleToVnode, cssModule } from '../utils'
-import { abstract, tag } from '../mixins'
+import { abstract, createTag } from '../mixins'
 
 export default {
   name: 'PanelBlock',
   functional: true,
-  mixins: [abstract, tag],
+  mixins: [abstract, createTag()],
   props: {
     icon: { default: false, type: Boolean },
     tabs: { default: false, type: Boolean }

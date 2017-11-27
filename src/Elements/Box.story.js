@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Box from './Box.vue'
 import AbstractBox from './AbstractBox.vue'
 
-const components = { AbstractBox, Box }
-function render (template) {
-  return { template, components }
+const components = {AbstractBox, Box}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Box.name, module)

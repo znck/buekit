@@ -1,17 +1,16 @@
 <script>
 import { cssModule, mergeData } from '../utils'
-import { colors, sizes, tag } from '../mixins'
+import { colors, sizes, createTag } from '../mixins'
 
 export default {
   name: 'Hero',
   functional: true,
-  mixins: [colors, sizes, tag],
+  mixins: [colors, sizes, createTag('section')],
   props: {
     bold: {
       default: false,
       type: Boolean
-    },
-    tag: { default: 'section' }
+    }
   },
   render (h, ctx) {
     const s = cssModule(ctx.$style)

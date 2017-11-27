@@ -1,13 +1,13 @@
 <script>
 import { cssModule, mergeData, toMap } from '../utils'
-import { tag } from '../mixins'
+import { createTag } from '../mixins'
 
 const devices = toMap(['mobile'])
 
 export default {
   name: 'Level',
   functional: true,
-  mixins: [tag],
+  mixins: [createTag()],
   props: {
     left: { type: Boolean, default: false },
     right: { type: Boolean, default: false },

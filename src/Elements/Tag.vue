@@ -1,18 +1,17 @@
 <script>
-import { mergeData, cssModule } from '../utils'
-import { colors, sizes, tag } from '../mixins'
+import { style, styleResolver } from '../utils'
+import { colors, sizes, createTag } from '../mixins'
 
 export default {
   name: 'Tag',
   functional: true,
-  mixins: [ colors, sizes, tag ],
+  mixins: [ colors, sizes, createTag('span') ],
   props: {
-    tag: { default: 'span' },
     rounded: { default: false, type: Boolean },
     delete: { default: false, type: Boolean }
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const s = styleResolver(ctx.$style)
     const { color, size, rounded, tag } = ctx.props
 
     const styles = [
@@ -23,7 +22,7 @@ export default {
       ctx.props.delete && s('is-delete')
     ]
 
-    return h(tag, mergeData(ctx.data, { class: styles }), ctx.children)
+    return style(h(tag, ctx.data, ctx.children), styles)
   }
 }
 </script>

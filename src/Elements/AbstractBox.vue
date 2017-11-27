@@ -1,6 +1,5 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { tag } from '../mixins'
+import { style, styleResolver } from '../utils'
 
 // TODO: Merge with Box.vue
 export default {
@@ -8,17 +7,15 @@ export default {
   abstract: true,
   functional: true,
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const s = styleResolver(ctx.$style)
 
-    if (process.env.NODE_ENV !== 'production' && ctx.children.length !== 1) {
+    if (process.env.NODE_ENV !== 'production' && (!ctx.children || ctx.children.length !== 1)) {
       console.warn('Box is an abstract component. It requires exactly one child.')
+
+      return null
     }
 
-    const vnode = ctx.children[0]
-
-    vnode.data = mergeData({ class: s('box') }, ctx.data, vnode.data)
-
-    return vnode
+    return style(ctx.children[0], s('box'), ctx.data && ctx.data.class, ctx.data && ctx.data.staticClass)
   }
 }
 </script>

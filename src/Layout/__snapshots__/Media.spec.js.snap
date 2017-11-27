@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Media.vue matches snapshot 1`] = `
+<article class="media">
+    <div class="media-content"></div>
+</article>
+`;
+
+exports[`Media.vue matches snapshot 2`] = `
+<article class="media">
+    <div class="media-content"></div>
+</article>
+`;
+
+exports[`Media.vue matches snapshot 3`] = `
+<article class="media">
+    <div class="media-content"></div>
+</article>
+`;

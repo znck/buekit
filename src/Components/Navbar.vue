@@ -1,23 +1,46 @@
 <script>
-import { addStyleToVnode, cssModule } from '../utils'
-import { colors, tag } from '../mixins'
+import  { isFunction } from 'lodash'
+import PropTypes from '@znck/prop-types'
+
+import { styleResolver, style, colors } from '../utils'
 
 import Burger from './NavbarBurger.vue'
 
 export default {
   name: 'Navbar',
-  mixins: [colors, tag],
+  mixins: [colors],
   data: () => ({ active: false }),
   props: {
-    transparent: { default: false, type: Boolean },
-    tag: { default: 'nav' },
-    noBurger: { default: false, type: Boolean }
+    /**
+     * Background color of navbar.
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    color: PropTypes.oneOf('white', ...colors),
+    /**
+     * Navbar without burger
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    noBurger: PropTypes.bool.value(false),
+    /**
+     * Wrapping html tag
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    tag: PropTypes.string.value('div'),
+    /**
+     * With transparent background
+     * @version 0.0.0
+     * @since Version 0.0.0
+     */
+    transparent: PropTypes.bool.value(false)
   },
   render (h) {
-    const s = cssModule(this.$style)
+    const _ = styleResolver(this.$style)
     const { color, transparent, tag, noBurger } = this.$props
     const active = this.active
-    let { menu, default: brand, start: left, end: right } = this.$slots
+    let { menu, default: brand = [], start: left, end: right } = this.$slots
 
     if (menu) { // menu goes to left.
       left = menu.concat(left || [])
@@ -27,30 +50,27 @@ export default {
     const needsMenu = left || right
 
     if (!noBurger) {
-      brand = (brand || []).concat([
-        h(Burger, { class: active && s('is-active'), on: {
-          click: () => {
-            this.activate(!active)
-            this.$listeners.activate && this.$listeners.activate(!active)
-          }
-        } })
-      ])
+      brand.push(
+        h(Burger, {
+          class: active && _('is-active'),
+          on: { click: () => this.activate(!active) }
+        })
+      )
     }
 
-    return addStyleToVnode(
+    return style(
       h(tag, { props: this.$attrs, on: this.$listeners }, [
         /* Navbar Brand */
-        needsBrand && h('div', { class: s('navbar-brand') }, brand),
-        /* Navbar Meny */
-        needsMenu && h('div', { class: [s('navbar-menu'), active && s('is-active')] }, [
-          left && h('div', { class: s('navbar-start') }, left),
-          right && h('div', { class: s('navbar-end') }, right)
+        needsBrand && h('div', { class: _('navbar-brand') }, brand),
+        /* Navbar Menu */
+        needsMenu && h('div', { class: [_('navbar-menu'), active && _('is-active')] }, [
+          left && h('div', { class: _('navbar-start') }, left),
+          right && h('div', { class: _('navbar-end') }, right)
         ])
-      ]), [
-        s('navbar'),
-        color && s('is-' + color),
-        transparent && s('is-transparent')
-      ]
+      ]),
+      _('navbar'),
+      color && _(`is-${color}`),
+      transparent && _('is-transparent')
     )
   },
 

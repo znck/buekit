@@ -1,11 +1,11 @@
 <script>
 import { cssModule, mergeData } from '../utils'
-import { abstract, colors, tag } from '../mixins'
+import { abstract, colors, createTag } from '../mixins'
 
 export default {
   name: 'Notification',
   functional: true,
-  mixins: [abstract, colors, tag],
+  mixins: [abstract, colors, createTag()],
   render (h, ctx) {
     const s = cssModule(ctx.$style)
     const { abstract, color, tag } = ctx.props

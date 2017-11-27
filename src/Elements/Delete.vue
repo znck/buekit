@@ -1,16 +1,13 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { sizes, tag } from '../mixins'
+import { style, styleResolver } from '../utils'
+import { sizes, createTag } from '../mixins'
 
 export default {
   name: 'Delete',
   functional: true,
-  mixins: [sizes, tag],
-  props: {
-    tag: { default: 'a' }
-  },
+  mixins: [sizes, createTag('a')],
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const s = styleResolver(ctx.$style)
     const { size, tag } = ctx.props
     const styles = [
       s('delete'),
@@ -21,7 +18,7 @@ export default {
       console.warn('Delete component should not have any child nodes.')
     }
 
-    return h(tag, mergeData({ class: styles }, ctx.data), [])
+    return style(h(tag, ctx.data, []), styles)
   }
 }
 </script>

@@ -1,90 +1,73 @@
 <script>
-import { cssModule, mergeData, validate, isResponsiveType, toArray, toMap, isString, isNumber, isUndefined } from '../utils'
-import { tag } from '../mixins'
+import PropTypes, { normalize } from '@znck/prop-types'
+import { styleResolver, style } from '../utils'
+import { devices } from '../shared'
+import { createTag } from '../mixins'
 
-const sizes = toMap(['three-quarters', 'two-thirds', 'half', 'one-third', 'one-quarter'])
+const sizes = ['three-quarters', 'two-thirds', 'half', 'one-third', 'one-quarter']
 
-const _isNumber = /^[\d]+$/
-function parseIntegerIfPossible (any) {
-  if (isString(any) && _isNumber.test(any)) return parseInt(any)
+const sizeType = name => PropTypes.oneOfType(
+  PropTypes.number.validate(v => 1 <= v && v <= 11),
+  PropTypes.oneOf(sizes)
+).modifiers(name, devices)
 
-  return any
-}
-
-function prepareSize (value) {
-  const index = value.lastIndexOf('-')
-  const device = value.substring(index + 1)
-
-  if (isResponsiveType(device)) return { device, size: parseIntegerIfPossible(value.substring(0, index)) }
-
-  return { size: parseIntegerIfPossible(value) }
-}
-
-function isValidGrid (value) {
-  value = parseIntegerIfPossible(value)
-
-  return isNumber(value) && value > 1 && value <= 12
-}
-
-function isValidSize (value) {
-  value = prepareSize(value)
-  
-  return (
-    (value.size in sizes || isValidGrid(value)) // validate size.
-    && (isUndefined(value.device) || isResponsiveType(value.device)) // validate device.
+let normalizer
+const props = (props, _) => {
+  normalizer = normalizer || normalize(props, (name, value) => {
+      switch (name) {
+        case 'size': return [_(`is-${value}`)]
+        case 'offset': return [_(`is-${name}-${value}`)]
+        case 'narrow': return value && [_(`is-${name}`)]
+        default: return value
+      }
+    }, (name, suffix, value) => {
+      switch (name) {
+        case 'size': return _(`is-${value}-${suffix}`)
+        case 'narrow': return value && _(`is-${name}-${suffix}`)
+        case 'offset': return _(`is-${name}-${value}-${suffix}`)
+      }
+    }
   )
-}
 
-function createSizeType () {
-  return {
-    default: () => [],
-    type: [Array, String, Number],
-    validate: value => validate(value, isValidSize)
-  }
+  return normalizer(props)
 }
 
 export default {
   name: 'Column',
   functional: true,
-  mixins: [tag],
+  mixins: [createTag()],
   props: {
-    narrow: {
-      default: false,
-      type: Boolean
-    },
     /**
-     * Take only required space.
+     * Take only the space it needs.
+     * @name narrow
+     * @version 0.0.0
+     * @since Version 0.0.0
+     * @modifiers mobile tablet desktop
      */
-    narrowOnDevice: {
-      default: () => [],
-      type: [Array, String],
-      validate: value => validate(value, isResponsiveType)
-    },
+    ...PropTypes.bool.value(false).modifiers('narrow', devices),
     /**
-     * Offset on left.
+     * Horizontal space before a column element.
+     * @name offset
+     * @version 0.0.0
+     * @since Version 0.0.0
+     * @modifiers mobile tablet desktop
      */
-    offset: createSizeType(),
+    ...sizeType('offset'),
     /**
-     * Width of the column.
+     * Width of column element in 12 point grid system.
+     * @name size
+     * @version 0.0.0
+     * @since Version 0.0.0
+     * @modifiers mobile tablet desktop
      */
-    size: createSizeType(),
+    ...sizeType('size')
   },
 
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const classes = [ s('column') ]
-    const push = (values, prefix) => toArray(values).forEach(
-      value => { classes.push(s(prefix + '-' + value)) }
-    )
+    const _ = styleResolver(ctx.$style)
+    const { tag, ...rest } = props(ctx.props, _)
 
-    const { narrow, narrowOnDevice, size, offset, tag } = ctx.props
-
-    narrow && classes.push(s(`is-narrow`))
-    push(narrowOnDevice, 'is-narrow')
-    push(size, 'is')
-    push(offset, 'is-offset')
-    
-    return h(tag, mergeData({ class: classes }, ctx.data), ctx.children)
+    return style(h(tag, ctx.data, ctx.children), _('column'), Object.values(rest))
   }
 }
 </script>

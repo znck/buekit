@@ -1,12 +1,12 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Tile from './Tile.vue'
 
-// import 'bulma'
+// Import 'bulma'
 
-const components = { Tile }
-function render (template) {
-  return { template, components }
+const components = {Tile}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Tile.name, module)

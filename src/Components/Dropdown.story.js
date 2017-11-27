@@ -1,17 +1,17 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Dropdown from './Dropdown.vue'
 import Active from '../Abstract/Active.vue'
 
-const components = { Active, Dropdown }
-function render (template) {
-  return { 
-    data () {
-      return { open: false }
-    },
-    template: `<div style="padding: 1.25rem">${template}</div>`,
-    components
-  }
+const components = {Active, Dropdown}
+function render(template) {
+	return {
+		data() {
+			return {open: false}
+		},
+		template: `<div style="padding: 1.25rem">${template}</div>`,
+		components
+	}
 }
 
 storiesOf(Dropdown.name, module)

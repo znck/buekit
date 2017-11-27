@@ -1,11 +1,11 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import Notification from './Notification.vue'
 import Delete from './Delete.vue'
 
-const components = { Notification, Delete }
-function render (template) {
-  return { template, components }
+const components = {Notification, Delete}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(Notification.name, module)

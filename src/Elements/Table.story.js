@@ -1,13 +1,13 @@
-import { storiesOf } from '@storybook/vue'
+import {storiesOf} from '@storybook/vue'
 
 import xTable from './Table.vue'
 import TableRow from './TableRow.vue'
 
 import 'bulma'
 
-const components = { xTable, TableRow }
-function render (template) {
-  return { template, components }
+const components = {xTable, TableRow}
+function render(template) {
+	return {template, components}
 }
 
 storiesOf(xTable.name, module)

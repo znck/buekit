@@ -18,5 +18,7 @@ export default {
 </script>
 
 <style module>
-.is-active {}
+.is-active {
+  /* This is a placeholder selector. */
+}
 </style>
