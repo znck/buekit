@@ -1,5 +1,5 @@
 <script>
-import { cssModule, mergeData } from '../utils'
+import { style, styleResolver } from '../utils'
 import PropTypes from '@znck/prop-types'
 
 export default {
@@ -9,11 +9,13 @@ export default {
     tag: PropTypes.string.value('footer')
   },
   render (h, ctx = {}) {
-    const s = cssModule(ctx.$style)
+    const _ = styleResolver(ctx.$style)
     const { tag } = ctx.props
-    const classes = [s('footer')]
 
-    return h(tag, mergeData({ class: classes }, ctx.data), ctx.children)
+    return style(
+      h(tag, ctx.data, ctx.children),
+      _('footer')
+    )
   }
 }
 </script>

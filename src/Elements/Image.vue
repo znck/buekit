@@ -1,41 +1,28 @@
 <script>
-import { cssModule, mergeData, toMap } from '../utils'
-
-const sizes = toMap(['16', '24', '32', '48', '64', '96', '128'])
-const ratios = toMap(['square', '1by1', '4by3', '3by2', '16by9', '2by1'])
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
 
 export default {
   name: 'Image',
   functional: true,
   props: {
-    size: {
-      type: [String, Number],
-      validate: size => size === undefined || `${size}` in sizes
-    },
-    ratio: {
-      type: String,
-      validate: ratio => ratio === undefined || ratio in ratios
-    },
-    src: {
-      type: String
-    },
-    alt: {
-      type: String
-    }
+    size: PropTypes.oneOf('16', '24', '32', '48', '64', '96', '128'),
+    ratio: PropTypes.oneOf('square', '1by1', '4by3', '3by2', '16by9', '2by1'),
+    src: PropTypes.string,
+    alt: PropTypes.string
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
     const { size, ratio, src, alt } = ctx.props
+    const _ = styleResolver(ctx.$style)
 
-    const classes = [
-      s('image'),
-      size && s('is-' + size + 'x' + size),
-      ratio && s('is-' + ratio)
-    ]
-
-    return h('figure', mergeData({ class: classes }, ctx.data), ctx.children || [
-      h('img', { attrs: { src, alt } })
-    ])
+    return style(
+      h('figure', ctx.data, ctx.children || [
+        h('img', { attrs: { src, alt } })
+      ]),
+      _('image'),
+      size && _(`is-${size}x${size}`),
+      ratio && _(`is-${ratio}`)
+    )
   }
 }
 </script>

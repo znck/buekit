@@ -1,32 +1,30 @@
 <script>
-import { cssModule, mergeData, toMap } from '../utils'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
 import { createTag } from '../mixins'
-
-const devices = toMap(['mobile'])
 
 export default {
   name: 'Level',
   functional: true,
   mixins: [createTag()],
   props: {
-    left: { type: Boolean, default: false },
-    right: { type: Boolean, default: false },
-    item: { type: Boolean, default: false },
-    device: { type: String, validator: device => device in devices }
+    left: PropTypes.bool.value(false),
+    right: PropTypes.bool.value(false),
+    item: PropTypes.bool.value(false),
+    mobile: PropTypes.bool.value(false)
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const { left, right, item, tag, device } = ctx.props
-    const classes = []
+    const _ = styleResolver(ctx.$style)
+    const { left, right, item, tag, mobile } = ctx.props
 
-    if (left) classes.push(s('level-left'))
-    else if (right) classes.push(s('level-right'))
-    else if (item) classes.push(s('level-item'))
-    else classes.push(s('level'))
-
-    if (device) classes.push(s('is-mobile'))
-
-    return h(tag, mergeData({ class: classes }, ctx.data), ctx.children)
+    return style(
+      h(tag, ctx.data, ctx.children),
+      left && _('level-left'),
+      right && _('level-right'),
+      item && _('level-item'),
+      !(left || right || item) && _('level'),
+      mobile && _('is-mobile')
+    )
   }
 }
 </script>

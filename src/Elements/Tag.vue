@@ -1,14 +1,18 @@
 <script>
+import PropTypes from '@znck/prop-types'
 import { style, styleResolver } from '../utils'
-import { colors, sizes, createTag } from '../mixins'
+import { createTag } from '../mixins'
+import { colors, sizes } from '../utils'
 
 export default {
   name: 'Tag',
   functional: true,
-  mixins: [ colors, sizes, createTag('span') ],
+  mixins: [ createTag('span') ],
   props: {
-    rounded: { default: false, type: Boolean },
-    delete: { default: false, type: Boolean }
+    color: PropTypes.oneOf(colors),
+    size: PropTypes.oneOf(sizes),
+    rounded: PropTypes.bool.value(false),
+    delete: PropTypes.bool.value(false)
   },
   render (h, ctx) {
     const s = styleResolver(ctx.$style)

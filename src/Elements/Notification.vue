@@ -1,31 +1,28 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { abstract, colors, createTag } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
+import { createTag } from '../mixins'
+import { colors } from '../shared'
 
 export default {
   name: 'Notification',
   functional: true,
-  mixins: [abstract, colors, createTag()],
+  mixins: [createTag('div', true)],
+  props: { color: PropTypes.oneOf(colors) },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
     const { abstract, color, tag } = ctx.props
+    const _ = styleResolver(ctx.$style)
 
     const styles = [
-      s('notification'),
-      color && s('is-' + color)
+      _('notification'),
+      color && _('is-' + color)
     ]
 
-    if (!abstract) return h(tag, mergeData({ class: styles }, ctx.data), ctx.children)
-
-    if (process.env.NODE_ENV !== 'production' && (!ctx.children || ctx.children.length !== 1)) {
-      console.warn('Notification is an abstract component. It requires exactly one child.')
+    if (!ctx.children || ctx.children.length !== 1 || !ctx.children[0].tag) {
+      return style(h('div', ctx.data, ctx.children), styles)
     }
 
-    const vnode = ctx.children[0]
-
-    vnode.data = mergeData({ class: styles }, vnode.data, ctx.data)
-
-    return vnode
+    return style(ctx.children[0], styles)
   }
 }
 </script>

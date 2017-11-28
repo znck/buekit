@@ -1,5 +1,5 @@
 <script>
-import { style, styleResolver, addStyleToVnode, isIgnoredVnode } from '../utils'
+import { style, styleResolver, isIgnoredVnode } from '../utils'
 
 export default {
   name: 'MenuList',
@@ -8,7 +8,7 @@ export default {
     const _ = styleResolver(ctx.$style)
     const { tag } = ctx.props
 
-    return addStyleToVnode(
+    return style(
       h('ul', ctx.data, (ctx.children || []).map(
         node => isIgnoredVnode(node) || node.tag === 'li' ? node : h('li', {}, [node])
       )),  _('menu-list')

@@ -1,25 +1,40 @@
 <script>
-import { addStyleToVnode, cssModule } from '../utils'
-import { abstract, createTag } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { isString } from 'lodash'
+import { style, styleResolver } from '../utils'
+import { createTag } from '../mixins'
 
 export default {
   name: 'PanelBlock',
   functional: true,
-  mixins: [abstract, createTag()],
+  mixins: [createTag('div', true)],
   props: {
-    icon: { default: false, type: Boolean },
-    tabs: { default: false, type: Boolean }
+    icon: PropTypes.bool.value(false),
+    tabs: PropTypes.bool.value(false)
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const { icon, tabs, abstract, tag } = ctx.props
-    const styles = [icon && s('panel-icon'), tabs && s('panel-tabs'), !icon && !tabs && s('panel-block')]
+    const { icon, tabs } = ctx.props
+    const s = styleResolver(ctx.$style)
+    const styles = [
+      icon && s('panel-icon'),
+      tabs && s('panel-tabs'),
+      !icon && !tabs && s('panel-block')
+    ]
 
-    if (abstract) return addStyleToVnode(ctx.children[0], styles)
+    if (isString(ctx.props.tag)) {
+      return style(
+        h(icon ? 'span' : ctx.props.tag, ctx.data, ctx.children),
+        styles
+      )
+    }
 
-    return addStyleToVnode(
-      h(icon ? 'span' : tag, ctx.data, ctx.children), styles
-    )
+    if (process.env.NODE_ENV !== 'production' && (!ctx.children || ctx.children.length !== 1)) {
+      console.warn('Title is an abstract component. It requires exactly one child.')
+
+      return null
+    }
+
+    return style(ctx.children[0], styles)
   }
 }
 </script>

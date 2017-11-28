@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Subtitle.vue matches snapshot 1`] = `<h2 class="subtitle"></h2>`;

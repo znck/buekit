@@ -1,17 +1,20 @@
 <script>
+import PropTypes from '@znck/prop-types'
 import { style, styleResolver } from '../utils'
-import { sizes, createTag } from '../mixins'
+import { createTag } from '../mixins'
+import { sizes } from '../shared'
 
 export default {
   name: 'Delete',
   functional: true,
-  mixins: [sizes, createTag('a')],
+  mixins: [createTag('a')],
+  props: { size: PropTypes.oneOf(sizes) },
   render (h, ctx) {
-    const s = styleResolver(ctx.$style)
+    const _ = styleResolver(ctx.$style)
     const { size, tag } = ctx.props
     const styles = [
-      s('delete'),
-      size && s('is-' + size)
+      _('delete'),
+      size && _('is-' + size)
     ]
 
     if (process.env.NODE_ENV !== 'production' && ctx.children && ctx.children.length) {

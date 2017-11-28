@@ -1,27 +1,24 @@
 <script>
-import { mergeData, cssModule, toMap } from '../utils'
+import PropTypes from '@znck/prop-types'
+import { styleResolver, style } from '../utils'
 import { createTag } from '../mixins'
-
-const types = toMap(['fluid', 'widescreen', 'fullhd'])
 
 export default {
   name: 'Container',
   functional: true,
   mixins: [createTag()],
   props: {
-    type: {
-      type: String,
-      validate: type => type in types
-    }
+    type: PropTypes.oneOf('fluid', 'widescreen', 'fullhd')
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const classes = [s('container')]
+    const _ = styleResolver(ctx.$style)
     const { type, tag } = ctx.props
 
-    if (type) classes.push(s('is-' + type))
-
-    return h(tag, mergeData({ class: classes }, ctx.data), ctx.children)
+    return style(
+      h(tag, ctx.data, ctx.children),
+      _('container'),
+      type && _(`is-${type}`)
+    )
   }
 }
 </script>

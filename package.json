@@ -1,6 +1,6 @@
 {
-  "name": "bulma.vue",
-  "version": "0.0.0-2",
+  "name": "buekit",
+  "version": "0.0.0",
   "description": "Bulma based Vue components",
   "scripts": {
     "test": "jest",
@@ -32,6 +32,8 @@
     "@storybook/vue": "^3.2.12",
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",
+    "babel-plugin-transform-object-assign": "^6.22.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-vue-app": "^1.3.1",
     "eslint": "^4.8.0",
@@ -42,10 +44,10 @@
     "jest-vue": "^0.8.1",
     "node-sass": "^4.5.3",
     "sass-loader": "^6.0.6",
+    "vue-loader": "^13.3.0",
     "vue-server-renderer": "^2.5.2",
     "vue-template-compiler": "^2.5.2",
-    "vue-test-utils": "^1.0.0-beta.1",
-    "vue-loader": "^13.3.0"
+    "vue-test-utils": "^1.0.0-beta.1"
   },
   "jest": {
     "moduleFileExtensions": [

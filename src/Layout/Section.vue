@@ -1,23 +1,23 @@
 <script>
 import PropTypes from '@znck/prop-types'
-import { cssModule, mergeData } from '../utils'
-import { sizes } from '../mixins'
+import { style, styleResolver } from '../utils'
+import { sizes } from '../shared'
+import { createTag } from '../mixins'
 
 export default {
   name: 'Section',
   functional: true,
-  mixins: [sizes],
-  props: {
-    tag: PropTypes.string.value('section')
-  },
+  mixins: [createTag('section')],
+  props: { size: PropTypes.oneOf(sizes) },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const _ = styleResolver(ctx.$style)
     const { size, tag } = ctx.props
-    const classes = [s('section')]
 
-    if (size != '') classes.push(s('is-' + size))
-
-    return h(tag, mergeData({ class: classes }, ctx.data), ctx.children)
+    return style(
+      h(tag, ctx.data, ctx.children),
+      _('section'),
+      size && _(`is-${size}`)
+    )
   }
 }
 </script>

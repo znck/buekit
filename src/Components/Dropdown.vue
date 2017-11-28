@@ -1,5 +1,7 @@
 <script>
-import { cssModule, mergeData, toArray, addStyleToVnode, isFunction } from '../utils'
+import PropTypes from '@znck/prop-types'
+import { isFunction } from 'lodash'
+import { styleResolver, style, toArray, call } from '../utils'
 import { createTag } from '../mixins'
 import Button from '../Elements/Button.vue'
 import Icon from '../Elements/Icon.vue'
@@ -14,26 +16,26 @@ export default {
     event: 'open'
   },
   props: {
-    icon: { default: 'fa fa-angle-down', type: String },
-    open: { type: Boolean, required: true },
-    title: { type: String },
-    right: { default: false, type: Boolean },
-    hoverable: { default: false, type: Boolean },
-    direction: { type: String, validate: dir => dir === undefined || dir === 'up' }
+    icon: PropTypes.string.value('fa fa-angle-down'),
+    open: PropTypes.bool.value(true),
+    title: PropTypes.string,
+    right: PropTypes.bool.value(false),
+    hoverable: PropTypes.bool.value(false),
+    direction: PropTypes.oneOf('up')
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
     const { icon, open, tag, title, right, hoverable, direction } = ctx.props
+    const _ = styleResolver(ctx.$style)
 
     const style = [
-      s('dropdown'),
-      open && s('is-active'),
-      right && s('is-right'),
-      hoverable && s('is-hoverable'),
-      direction && s('is-up'),
+      _('dropdown'),
+      open && _('is-active'),
+      right && _('is-right'),
+      hoverable && _('is-hoverable'),
+      direction && _(`is-${direction}`),
     ]
 
-    let { trigger, default: content } = ctx.slots()
+    let { trigger, default: content = [] } = ctx.slots()
 
     trigger = trigger || [
       h(Button, {}, [
@@ -41,25 +43,21 @@ export default {
         h(Icon, {}, [h('i', { class: icon })])
       ])
     ]
-    content = content || []
-    const itemClass = s('dropdown-item')
-    const dividerClass = s('dropdown-divider')
-    const data = mergeData(ctx.data, { class: style })
-    const fireOpen = () => isFunction(ctx.data.on.open) && ctx.data.on.open(!open)
+    const itemClass = _('dropdown-item')
+    const dividerClass = _('dropdown-divider')
+    const fireOpen = () => call(ctx.data && ctx.data.on && ctx.data.on.open)
 
     const el =
-      h(tag, data, [
+      h(tag, ctx.data, [
         /* Trigger */
         h('div', {
-          class: s('dropdown-trigger'),
+          class: _('dropdown-trigger'),
           on: { click: fireOpen }
         }, trigger),
         /* Menu */
-        h('div', { class: s('dropdown-menu') }, [
-          h('div', { class: s('dropdown-content') }, content.map(
-            item => (item && item.tag === 'hr') ?
-              addStyleToVnode(item, dividerClass) :
-              addStyleToVnode(item, itemClass)
+        h('div', { class: _('dropdown-menu') }, [
+          h('div', { class: _('dropdown-content') }, content.map(
+            item => style(item, (item && item.tag === 'hr') ? dividerClass : itemClass)
           ))
         ])
       ])

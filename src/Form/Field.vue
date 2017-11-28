@@ -1,30 +1,29 @@
 <script>
-import { cssModule, addStyleToVnode } from '../utils'
-import { sizes, colors } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
+import { sizes, colors } from '../shared'
 
 export default {
   name: 'Field',
   functional: true,
-  mixins: [sizes, colors],
   props: {
-    label: { type: String },
-    help: { type: String }
+    size: PropTypes.oneOf(sizes),
+    color: PropTypes.oneOf(colors),
+    label: PropTypes.string,
+    help: PropTypes.string
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const _ = styleResolver(ctx.$style)
     const { color, size, label, help } = ctx.props
-    const { label: slotLABEL, help: slotHELP, default: content } = ctx.slots()
+    const { label: slotLABEL, help: slotHELP, default: content = [] } = ctx.slots()
 
-    return addStyleToVnode(
+    return style(
       h('div', ctx.data, [
-        (label || slotLABEL) && h('label', {
-          class: [s('label'), s('is-' + size)]
-        }, slotLABEL || label),
-        ...(content || []),
-        (help || slotHELP) && h('p', {
-          class: [s('help'), s('is-' + color)]
-        }, slotHELP || help)
-      ]), s('field')
+        (label || slotLABEL) && h('label', {class: [_('label'), size && _(`is-${size}`)]}, slotLABEL || label),
+        ...content,
+        (help || slotHELP) && h('p', {class: [_('help'), color && _(`is-${color}`)]}, slotHELP || help)
+      ]),
+      _('field')
     )
   }
 }

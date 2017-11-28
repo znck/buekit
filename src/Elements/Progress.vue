@@ -1,36 +1,33 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { colors, sizes } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver, toObject } from '../utils'
+import { colors, sizes } from '../shared'
 
 export default {
   name: 'Progress',
   functional: true,
-  mixins: [colors, sizes],
   props: {
-    max: {
-      default: 100,
-      type: Number
-    },
-    value: {
-      required: true,
-      type: Number
-    }
+    max: PropTypes.number.value(100),
+    value: PropTypes.number.isRequired,
+    color: PropTypes.oneOf(colors),
+    size: PropTypes.oneOf(sizes)
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const _ = styleResolver(ctx.$style)
     const { color, size, value, max } = ctx.props
 
-    const styles = [
-      s('progress'),
-      color && s('is-' + color),
-      size && s('is-' + size)
-    ]
-
-    const attrs = {
+    ctx.data = ctx.data || {}
+    ctx.data.attrs = {
+      ...toObject(ctx.data.attrs),
       value, max
     }
 
-    return h('progress', mergeData(ctx.data, { class: styles, attrs }), [value + '%'])
+    return style(
+      h('progress', ctx.data, [value + '%']),
+      _('progress'),
+      color && _(`is-${color}`),
+      size && _(`is-${size}`)
+    )
   }
 }
 </script>

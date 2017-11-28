@@ -1,22 +1,25 @@
-import colors from './colors'
-import sizes from './sizes'
+import PropTypes from '@znck/prop-types'
 
-export default {
-	mixins: [colors, sizes],
-	props: {
-		value: {required: true},
-		largeText: {default: false, type: Boolean},
-		focused: {default: false, type: Boolean},
-		hovered: {default: false, type: Boolean},
-		static: {default: false, type: Boolean}
-	},
-	styles(props, $style) {
-		return [
-			$style['is-' + props.size],
-			$style['is-' + props.color],
-			props.focused && $style['is-focused'],
-			props.hovered && $style['is-hovered'],
-			props.static && $style['is-static']
-		]
-	}
+import { colors, sizes } from '../shared'
+import { styleResolver } from '../utils'
+
+export const props = {
+	color: PropTypes.oneOf(colors),
+	size: PropTypes.oneOf(sizes),
+	value: PropTypes.any.isRequired,
+	focused: PropTypes.bool.value(false),
+	hovered: PropTypes.bool.value(false),
+	static: PropTypes.bool.value(false)
+}
+
+export function styles(props, $style) {
+	const _ = styleResolver($style)
+
+	return [
+		props.size && _(`is-${props.size}`),
+		props.color && _(`is-${props.color}`),
+		props.focused && _('is-focused'),
+		props.hovered && _('is-hovered'),
+		props.static && _('is-static')
+	]
 }

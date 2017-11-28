@@ -1,20 +1,21 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { sizes } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
+import { sizes } from '../shared'
 
 export default {
   name: 'Icon',
   functional: true,
-  mixins: [sizes],
+  props: { size: PropTypes.oneOf(sizes) },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
+    const s = styleResolver(ctx.$style)
     const { size } = ctx.props
-    const styles = [
-      s('icon'),
-      size && s('is-' + size)
-    ]
 
-    return h('span', mergeData({ class: styles }, ctx.data), ctx.children)
+    return style(
+      h('span', ctx.data, ctx.children),
+      s('icon'),
+      size && s(`is-${size}`)
+    )
   }
 }
 </script>

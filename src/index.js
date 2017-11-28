@@ -1,3 +1,5 @@
+import {each, assign} from 'lodash'
+
 import * as Abstract from './Abstract'
 import * as Columns from './Columns'
 import * as Components from './Components'
@@ -12,21 +14,20 @@ export * from './Elements'
 export * from './Form'
 export * from './Layout'
 
-export function register(Vue, components, prefix = 'Bu') {
-	Object.entries(components).forEach(
-    (name, component) => Vue.component(prefix + name, component)
-  )
+function register(Vue, components, prefix) {
+	each(components, (component, name) => Vue.component(prefix + name, component))
 }
 
 export default function BulmaVue(Vue, options) {
-	const components = {
-		...Abstract,
-		...Columns,
-		...Components,
-		...Elements,
-		...Form,
-		...Layout
-	}
+	const components = assign(
+    {},
+		Abstract,
+		Columns,
+		Components,
+		Elements,
+		Form,
+		Layout
+  )
 
-	register(Vue, components, (ptions && options.prefix) || 'B')
+	register(Vue, components, (ptions && options.prefix) || 'Bu')
 }

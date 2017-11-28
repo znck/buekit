@@ -1,34 +1,25 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { abstract } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
 
-// TODO: Remove this. Instead use an abstract component.
 export default {
   name: 'TableRow',
   functional: true,
-  mixins: [abstract],
+  abstract: true,
   props: {
-    selected: { default: false, type: Boolean }
+    selected: PropTypes.bool.value(false)
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const { abstract, selected } = ctx.props
+    const _ = styleResolver(ctx.$style)
+    const { selected } = ctx.props
 
-    const styles = [
-      selected && s('is-selected')
-    ]
+    const styles = selected && _('is-selected')
 
-    if (!abstract) return h('tr', mergeData({ class: styles }, ctx.data), ctx.children)
-
-    if (process.env.NODE_ENV !== 'production' && (!ctx.children || ctx.children.length !== 1)) {
-      console.warn('TableRow is an abstract component. It requires exactly one child.')
+    if (!ctx.children || ctx.children.length !== 1 || ctx.children[0].tag !== 'tr') {
+      return style(h('tr', ctx.data, ctx.children), styles)
     }
 
-    const vnode = ctx.children[0]
-
-    vnode.data = mergeData({ class: styles }, vnode.data, ctx.data)
-
-    return vnode
+    return style(ctx.children[0], styles)
   }
 }
 </script>

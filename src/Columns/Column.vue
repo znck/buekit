@@ -1,13 +1,11 @@
 <script>
 import PropTypes, { normalize } from '@znck/prop-types'
 import { styleResolver, style } from '../utils'
-import { devices } from '../shared'
+import { devices, columns as sizes } from '../shared'
 import { createTag } from '../mixins'
 
-const sizes = ['three-quarters', 'two-thirds', 'half', 'one-third', 'one-quarter']
-
 const sizeType = name => PropTypes.oneOfType(
-  PropTypes.number.validate(v => 1 <= v && v <= 11),
+  PropTypes.number.validate(v => 1 < v && v < 12),
   PropTypes.oneOf(sizes)
 ).modifiers(name, devices)
 

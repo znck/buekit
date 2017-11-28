@@ -1,5 +1,6 @@
 <script>
-import { cssModule, addStyleToVnode } from '../utils'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver, call } from '../utils'
 import Delete from '../Elements/Delete.vue'
 
 export default {
@@ -10,14 +11,14 @@ export default {
     event: 'close'
   },
   props: {
-    open: { default: false, type: Boolean },
-    classic: { default: false, type: Boolean },
-    preload: { default: false, type: Boolean },
-    title: { type: String }
+    open: PropTypes.bool.value(false),
+    classic: PropTypes.bool.value(false),
+    preload: PropTypes.bool.value(false),
+    title: PropTypes.string
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
     const { open, preload, classic, title } = ctx.props
+    const _ = styleResolver(ctx.$style)
 
     if (!open && !preload) return null
 
@@ -26,14 +27,12 @@ export default {
     }
 
     const styles = [
-      s('modal'),
-      open && s('is-active')
+      _('modal'),
+      open && _('is-active')
     ]
 
     const close = {
-      click () {
-        ctx.data && ctx.data.on && ctx.data.on.close && ctx.data.on.close(false)
-      }
+      click: () => call(ctx.data && ctx.data.on && ctx.data.on.close)
     }
 
     if (classic) {
@@ -42,37 +41,37 @@ export default {
 
       if (heading) heading = heading[0]
       
-      const headStyle = [s('modal-card-title')]
-      const footLinkStyle = [s('button')]
+      const headStyle = [_('modal-card-title')]
+      const footLinkStyle = [_('button')]
 
-      return addStyleToVnode(
+      return style(
         h('div', ctx.data, [
-          h('div', { class: s('modal-background'), on: close }),
-          h('div', { class: s('modal-card') }, [
+          h('div', { class: _('modal-background'), on: close }),
+          h('div', { class: _('modal-card') }, [
             /* Render Header */
-            hasHeader && h('header', { class: s('modal-card-head') }, [
+            hasHeader && h('header', { class: _('modal-card-head') }, [
               heading
-                ? addStyleToVnode(heading, headStyle)
+                ? style(heading, headStyle)
                 : h('p', { class: headStyle }, title),
               h(Delete, { on: close })
             ]),
             /* Render Body */
-            h('div', { class: s('modal-card-body') }, content),
+            h('div', { class: _('modal-card-body') }, content),
             /* Render Footer */
             links && h(
-              'footer', { class: s('modal-card-foot') },
-              links.map(link => addStyleToVnode(link, footLinkStyle))
+              'footer', { class: _('modal-card-foot') },
+              links.map(link => style(link, footLinkStyle))
             )
           ])
         ]), styles
       )
     }
 
-    return addStyleToVnode(
+    return style(
       h('div', ctx.data, [
-        h('div', { class: s('modal-background'), on: close }),
-        h('div', { class: s('modal-content') }, ctx.children),
-        h('div', { class: [s('modal-close'), s('is-large')], on: close })
+        h('div', { class: _('modal-background'), on: close }),
+        h('div', { class: _('modal-content') }, ctx.children),
+        h('div', { class: [_('modal-close'), _('is-large')], on: close })
       ]), styles
     )
   }

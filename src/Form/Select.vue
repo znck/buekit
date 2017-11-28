@@ -1,7 +1,9 @@
 <script>
-import { cssModule, toArray, toMap } from '../utils'
-import { input } from '../mixins'
-import InputSelect from './_InputSelect.vue'
+import { every } from 'lodash'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver, toArray, toObject } from '../utils'
+import * as input from '../mixins/input'
+import InputSelect from './input/InputSelect.vue'
 
 function prepareOptions (options) {
   return Array.isArray(options)
@@ -12,40 +14,30 @@ function prepareOptions (options) {
 export default {
   name: 'Select',
   functional: true,
-  mixins: [input],
   props: {
-    multiple: { default: false, type: [Boolean, Number] },
-    options: {
-      type: [Object, Array],
-      validate: options => (Array.isArray(options) && options.every(
-        option => option && typeof option === 'object' && 'value' in option
-      )) || (options && typeof options === 'object')
-    }
+    ...input.props,
+    multiple: PropTypes.oneOfType(
+      PropTypes.number,
+      PropTypes.bool
+    ).value(false),
+    options: PropTypes.oneOfType(
+      PropTypes.array,
+      PropTypes.object
+    )
   },
   render (h, ctx) {
     const { props = {}, data = {} } = ctx
-    const s = cssModule(ctx.$style)
-    
-    if (!data.on) data.on = {}
-    if (!data.attrs) data.attrs = {}
+    const s = styleResolver(ctx.$style)
 
     if (props.multiple) {
-      data.attrs.multiple = true
-    }
-
-    if (props.multiple > 1) {
-      data.attrs.size = props.multiple
+      data.on = { ...toObject(data.on), multiple: true, size: props.multiple !== true && props.multiple }
     }
     
     // Handle Input.
-    const handlers = toArray(data.on.input)
-    data.on.input = value => {
-      value = value.target ? value.target.value : value
-      handlers.map(
-        cb => setTimeout(cb(value), 0)
-      )
-    }
-    const value = toMap(toArray(props.value))
+    data.on.input = [
+      value => { value = value.target ? value.target.value : value },
+      ...toArray(data.on.input)
+    ]
     const { default: slotOPTIONS } = ctx.slots()
 
     const options = slotOPTIONS && slotOPTIONS.length 
@@ -54,13 +46,12 @@ export default {
           option => h('option', { attrs: { value: option.value } }, option.label || option.value)
         )
 
-    return h('div', { class: [
-        s`select`,
-        props.multiple && s`is-multiple`,
-        ...input.styles(props, ctx.$style)
-      ] }, [
-        h(InputSelect, data, options)
-    ])
+    return style(
+      h('div', {}, [h(InputSelect, data, options)]),
+      _('select'),
+      props.multiple && _('is-multiple'),
+      input.style(props, $style)
+    )
   }
 }
 </script>

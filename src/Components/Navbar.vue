@@ -2,13 +2,13 @@
 import  { isFunction } from 'lodash'
 import PropTypes from '@znck/prop-types'
 
-import { styleResolver, style, colors } from '../utils'
+import { styleResolver, style } from '../utils'
+import { colors } from '../shared'
 
 import Burger from './NavbarBurger.vue'
 
 export default {
   name: 'Navbar',
-  mixins: [colors],
   data: () => ({ active: false }),
   props: {
     /**

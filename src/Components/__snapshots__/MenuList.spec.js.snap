@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`MenuList.vue matches snapshot 1`] = `<ul class="menu-list menu-list"></ul>`;

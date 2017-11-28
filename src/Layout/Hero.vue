@@ -1,32 +1,34 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { colors, sizes, createTag } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
+import { createTag } from '../mixins'
+import { colors, sizes } from '../shared'
 
 export default {
   name: 'Hero',
   functional: true,
-  mixins: [colors, sizes, createTag('section')],
+  mixins: [createTag('section')],
   props: {
-    bold: {
-      default: false,
-      type: Boolean
-    }
+    bold: PropTypes.bool.value(false),
+    color: PropTypes.oneOf(colors),
+    size: PropTypes.oneOf(sizes)
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const classes = [s('hero')]
+    const _ = styleResolver(ctx.$style)
     const { bold, color, size, tag } = ctx.props
     const slots = ctx.slots()
 
-    if (color) classes.push(s('is-' + color))
-    if (size) classes.push(s('is-' + size))
-    if (bold) classes.push(s('is-bold'))
-
-    return h(tag, mergeData({ class: classes }, ctx.data), [
-      slots.head && slots.head.length && h('div', { class: s('hero-head') }, slots.head),
-      h('div', { class: s('hero-body') }, slots.default),
-      slots.foot && slots.foot.length && h('div', { class: s('hero-foot') }, slots.foot)
-    ])
+    return style(
+      h(tag, ctx.data, [
+        slots.head && h('div', { class: _('hero-head') }, slots.head),
+        h('div', { class: _('hero-body') }, slots.default),
+        slots.foot && h('div', { class: _('hero-foot') }, slots.foot)
+      ]),
+      _('hero'),
+      color && _(`is-${color}`),
+      size && _(`is-${size}`),
+      bold && _('is-bold')
+    )
   }
 }
 </script>

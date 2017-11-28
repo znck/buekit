@@ -1,35 +1,38 @@
 <script>
-import { addStyleToVnode, toArray } from '../utils'
-import { input } from '../mixins'
-import InputText from './_InputText.vue'
-import InputTextarea from './_InputTextarea.vue'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver, toArray, toObject } from '../utils'
+import * as input from '../mixins/input'
+import InputText from './input/InputText.vue'
+import InputTextarea from './input/InputTextarea.vue'
 
 export default {
   name: 'Input',
   functional: true,
-  mixins: [input],
+  props: {
+    ...input.props,
+	  textarea: PropTypes.bool.value(false),
+  },
   render (h, ctx) {
     const { $style = {}, props = {}, data = {} } = ctx
+    const _ = styleResolver($style)
     
-    if (!data.on) data.on = {}
-    if (!data.attrs) data.attrs = {}
-    
-    if (!props.largeText) 
-      data.attrs.type = data.attrs.type || 'text'
-    
-    const handlers = toArray(data.on.input)
-    data.on.input = value => {
-      value = value.target ? value.target.value : value
-      handlers.map(
-        cb => setTimeout(cb(value), 0)
-      )
+    if (!props.textarea) {
+      data.attrs = {
+        ...toObject(data.attrs),
+        type: (data.attrs && data.attrs.type) || 'text'
+      }
     }
+    
+    data.on = data.on || {}
+    data.on.input = [
+      value => { value = value.target ? value.target.value : value },
+      ...toArray(data.on && data.on.input)
+    ]
 
-    return addStyleToVnode(
-      h(props.largeText ? InputTextarea : InputText, data), [
-        props.largeText ? $style['textarea'] : $style['input'],
-        ...input.styles(props, $style)
-      ]
+    return style(
+      h(props.textarea ? InputTextarea : InputText, data),
+      _(props.textarea ? 'textarea' : 'input'),
+      input.styles(props, $style)
     )
   }
 }

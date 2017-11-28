@@ -1,5 +1,6 @@
 <script>
-import { cssModule, mergeData, toArray, addStyleToVnode } from '../utils'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver, toArray } from '../utils'
 import { createTag } from '../mixins'
 
 export default {
@@ -7,34 +8,32 @@ export default {
   functional: true,
   mixins: [createTag()],
   props: {
-    title: { type: String },
-    centered: { default: false, type: Boolean }
+    title: PropTypes.string,
+    centered: PropTypes.bool.value(false)
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
     const { centered, tag, title } = ctx.props
+    const { default: contentSLOT, imageSLOT, title: headingSLOT, iconSLOT, linksSLOT } = ctx.slots()
+    const _ = styleResolver(ctx.$style)
 
-    let { default: content, image, title: heading, icon, links } = ctx.slots()
+    const hasHeader = Array.isArray(headingSLOT) || title !== undefined || Array.isArray(iconSLOT)
+    const headStyle = [_('card-header-title'), centered && _('is-centered')]
+    const footLinkStyle = _('card-footer-item')
 
-    const hasHeader = Array.isArray(heading) || title !== undefined || Array.isArray(icon)
-
-    if (icon) icon = icon[0]
-    if (heading) heading = heading[0]
-
-    const headStyle = [s('card-header-title'), centered && s('is-centered')]
-    const footLinkStyle = [s('card-footer-item')]
-
-    return h(tag, mergeData(ctx.data, { class: s('card') }), [
-      /* Render Header */
-      hasHeader && h('header', { class: s('card-header') }, [
-        heading ? addStyleToVnode(heading, headStyle) : h('p', { class: headStyle }, title),
-        icon && addStyleToVnode(icon, s('card-header-icon'))
-      ].filter(i => i)),
-      /* Render Image */
-      image && h('div', { class: s('card-image') }, image),
-      h('div', { class: s('card-content') }, content),
-      links && h('footer', { class: s('card-footer') }, links.map(link => addStyleToVnode(link, footLinkStyle)))
-    ].filter(i => i))
+    return style(
+      h(tag, ctx.data, [
+        /* Render Header */
+        hasHeader && h('header', { class: _('card-header') }, [
+          headingSLOT ? style(headingSLOT[0], headStyle) : h('p', { class: headStyle }, title),
+          iconSLOT && style(iconSLOT[0], _('card-header-icon'))
+        ]),
+        /* Render Image */
+        imageSLOT && h('div', { class: _('card-image') }, imageSLOT),
+        h('div', { class: _('card-content') }, contentSLOT),
+        linksSLOT && h('footer', { class: _('card-footer') }, linksSLOT.map(link => style(link, footLinkStyle)))
+      ]),
+      _('card')
+    )
   }
 }
 </script>

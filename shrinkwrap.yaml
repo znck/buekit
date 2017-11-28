@@ -1,6 +1,7 @@
 devDependencies:
   babel-eslint: 8.0.1
   babel-jest: 21.2.0
+  babel-plugin-transform-object-rest-spread: 6.26.0
   babel-preset-env: 1.6.0
   eslint: 4.8.0
   eslint-plugin-vue: 3.13.1
@@ -3343,10 +3344,12 @@ packages:
     resolution:
       integrity: sha1-UqzCP+7Kw0BCB47njAwAf1CF20w=
 registry: 'https://registry.npmjs.org/'
+shrinkwrapMinorVersion: 4
 shrinkwrapVersion: 3
 specifiers:
   babel-eslint: ^8.0.1
   babel-jest: ^21.2.0
+  babel-plugin-transform-object-rest-spread: ^6.26.0
   babel-preset-env: ^1.6.0
   eslint: ^4.8.0
   eslint-plugin-vue: ^3.13.1

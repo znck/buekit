@@ -1,42 +1,38 @@
 <script>
-import { cssModule, mergeData, toMap } from '../utils'
-import { sizes, createTag } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver, isIgnoredVnode } from '../utils'
+import { createTag } from '../mixins'
+import { sizes } from '../shared'
 
-const separators = toMap(['succeeds', 'dot', 'bullet', 'arrow'])
 
 export default {
   name: 'Breadcrumb',
   functional: true,
-  mixins: [sizes, createTag('nav')],
+  mixins: [createTag('nav')],
   props: {
-    centered: { default: false, type: Boolean },
-    pushed: { default: false, type: Boolean },
-    separator: { type: String, validate: separator => separator === undefined || separator in separators }
+    centered: PropTypes.bool.value(false),
+    pushed: PropTypes.bool.value(false),
+    separator: PropTypes.oneOf('succeeds', 'dot', 'bullet', 'arrow'),
+    size: PropTypes.oneOf(sizes)
   },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
     const { size, tag, centered, pushed, separator } = ctx.props
-
-    const styles = [
-      s('breadcrumb'),
-      size && s('is-' + size),
-      centered && s('is-centered'),
-      pushed && s('is-right'),
-      separator && s('has-' + separator + '-separator')
+    const _ = styleResolver(ctx.$style)
+    const slots = ctx.slots()
+    const links = (slots.default || []).filter(v => !isIgnoredVnode(v))
+    const k = links.length - 1
+    const wrapper = [
+      h('ul', {}, links.map((link, i) => h('li', { class: [ i === k && _('is-active') ] }, [link])))
     ]
 
-    let { wrapper, default: links = [] } = ctx.slots()
-
-    if (!wrapper || !wrapper.length) {
-      const k = links.length - 1
-      wrapper = [h('ul', {}, links.map((link, i) => {
-        if (!link || !link.tag || link.isComment) return link
-
-        return h('li', { class: [ i === k && s('is-active') ] }, [link])
-      }))]
-    }
-
-    return h(tag, mergeData(ctx.data, { class: styles }), wrapper)
+    return style(
+      h(tag, ctx.data, wrapper),
+      _('breadcrumb'),
+      size && _(`is-${size}`),
+      centered && _('is-centered'),
+      pushed && _('is-right'),
+      separator && _(`has-${separator}-separator`)
+    )
   }
 }
 </script>
