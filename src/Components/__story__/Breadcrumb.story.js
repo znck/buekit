@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import Breadcrumb from './Breadcrumb.vue'
+import Breadcrumb from '../Breadcrumb.vue'
 
 const components = {Breadcrumb}
 function render(template) {

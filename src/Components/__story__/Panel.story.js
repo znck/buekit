@@ -1,8 +1,8 @@
 import {storiesOf} from '@storybook/vue'
 
-import Active from '../Abstract/Active.vue'
-import Panel from './Panel.vue'
-import PanelBlock from './PanelBlock.vue'
+import Active from '../../Abstract/Active.vue'
+import Panel from '../Panel.vue'
+import PanelBlock from '../PanelBlock.vue'
 
 import 'bulma'
 

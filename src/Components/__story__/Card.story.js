@@ -1,12 +1,12 @@
 import {storiesOf} from '@storybook/vue'
 
-import Card from './Card.vue'
-import xImage from '../Elements/Image.vue'
-import Media from '../Layout/Media.vue'
-import Icon from '../Elements/Icon.vue'
-import Subtitle from '../Elements/Subtitle.vue'
-import xContent from '../Elements/Content.vue'
-import xTitle from '../Elements/Title.vue'
+import Card from '../Card.vue'
+import xImage from '../../Elements/Image.vue'
+import Media from '../../Layout/Media.vue'
+import Icon from '../../Elements/Icon.vue'
+import Subtitle from '../../Elements/Subtitle.vue'
+import xContent from '../../Elements/Content.vue'
+import xTitle from '../../Elements/Title.vue'
 
 const components = {Card, xImage, Media, Icon, Subtitle, xTitle, xContent}
 function render(template) {

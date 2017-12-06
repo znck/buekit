@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Media from './Media.vue'
-import Level from './Level.vue'
+import Media from '../Media.vue'
+import Level from '../Level.vue'
 
 import 'bulma'
 

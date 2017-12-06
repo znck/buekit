@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import Delete from './Delete.vue'
+import Delete from '../Delete.vue'
 
 const components = {Delete}
 function render(template) {

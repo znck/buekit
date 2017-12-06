@@ -1,10 +1,10 @@
 import {storiesOf} from '@storybook/vue'
 
-import Active from '../Abstract/Active.vue'
+import Active from '../../Abstract/Active.vue'
 
-import xMenu from './Menu.vue'
-import MenuLabel from './MenuLabel.vue'
-import MenuList from './MenuList.vue'
+import xMenu from '../Menu.vue'
+import MenuLabel from '../MenuLabel.vue'
+import MenuList from '../MenuList.vue'
 
 const components = {xMenu, MenuLabel, MenuList, Active}
 function render(template) {

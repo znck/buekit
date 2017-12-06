@@ -1,8 +1,8 @@
 import {storiesOf} from '@storybook/vue'
 
-import Navbar from './Navbar.vue'
-import NavbarItem from './NavbarItem.vue'
-import NavbarDropdown from './NavbarDropdown.vue'
+import Navbar from '../Navbar.vue'
+import NavbarItem from '../NavbarItem.vue'
+import NavbarDropdown from '../NavbarDropdown.vue'
 
 import 'bulma'
 

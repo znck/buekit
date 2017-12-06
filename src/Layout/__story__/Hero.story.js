@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Hero from './Hero.vue'
-import Container from './Container.vue'
+import Hero from '../Hero.vue'
+import Container from '../Container.vue'
 
 import 'bulma'
 

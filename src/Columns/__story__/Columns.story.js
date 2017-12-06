@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Columns from './Columns.vue'
-import Column from './Column.vue'
+import Columns from '../Columns.vue'
+import Column from '../Column.vue'
 
 let i = 0
 let wrap = 4

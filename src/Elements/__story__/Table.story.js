@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import xTable from './Table.vue'
-import TableRow from './TableRow.vue'
+import xTable from '../Table.vue'
+import TableRow from '../TableRow.vue'
 
 import 'bulma'
 

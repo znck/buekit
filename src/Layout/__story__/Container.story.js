@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import Container from './Container.vue'
+import Container from '../Container.vue'
 
 const components = {Container}
 

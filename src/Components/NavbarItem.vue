@@ -1,26 +1,24 @@
 <script>
-import { addStyleToVnode, mergeData, cssModule } from '../utils'
-import { abstract, tag } from '../mixins'
+import { style, styleResolver } from '../utils'
+import { createTag } from '../mixins'
 
 export default {
   name: 'NavbarItem',
   functional: true,
-  mixins: [abstract, tag],
+  mixins: [createTag('div', true)],
   render (h, ctx) {
     const { abstract, tag } = ctx.props
-    const s = cssModule(ctx.$style)
+    const _ = styleMedia(ctx.$style)
 
     const styles = [
-      s('navbar-item')
+      _('navbar-item')
     ]
 
-    if (abstract) {
-      return addStyleToVnode(ctx.children[0], styles)
+    if (tag !== false) {
+      return style(h(tag || 'div', ctx.data, ctx.children), styles)
     }
 
-    return addStyleToVnode(
-      h(tag, ctx.data, ctx.children), styles
-    )
+    return style(ctx.children[0], styles)
   }
 }
 </script>

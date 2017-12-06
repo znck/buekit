@@ -1,8 +1,8 @@
 import {storiesOf} from '@storybook/vue'
 
-import xSelect from './Select.vue'
-import Field from './Field.vue'
-import Control from './Control.vue'
+import xSelect from '../Select.vue'
+import Field from '../Field.vue'
+import Control from '../Control.vue'
 
 const components = {Control, Field, xSelect}
 function render(template) {

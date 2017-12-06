@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Section from './Section.vue'
-import Container from './Container.vue'
+import Section from '../Section.vue'
+import Container from '../Container.vue'
 
 const components = {Section}
 

@@ -1,5 +1,5 @@
 <script>
-import { cssModule, addStyleToVnode, isIgnoredVnode, toMap } from '../utils'
+import { style, styleResolver, isIgnoredVnode } from '../utils'
 import { sizes } from '../mixins'
 
 const types = toMap(['boxed', 'toggle', 'fullwidth'])
@@ -7,7 +7,6 @@ const types = toMap(['boxed', 'toggle', 'fullwidth'])
 export default {
   name: 'Tabs',
   functional: true,
-  mixins: [sizes],
   props: {
     active: { type: Number, required: true },
     centered: { default: false, type: Boolean },

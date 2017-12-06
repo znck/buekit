@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import xContent from './Content.vue'
+import xContent from '../Content.vue'
 
 const components = {xContent}
 function render(template) {

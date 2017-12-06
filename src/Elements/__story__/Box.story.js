@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Box from './Box.vue'
-import AbstractBox from './AbstractBox.vue'
+import Box from '../Box.vue'
+import AbstractBox from '../AbstractBox.vue'
 
 const components = {AbstractBox, Box}
 function render(template) {

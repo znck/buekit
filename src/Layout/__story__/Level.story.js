@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import Level from './Level.vue'
+import Level from '../Level.vue'
 
 import 'bulma'
 

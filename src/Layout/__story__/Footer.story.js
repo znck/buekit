@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Footer from './Footer.vue'
-import Container from './Container.vue'
+import Footer from '../Footer.vue'
+import Container from '../Container.vue'
 
 import 'bulma'
 

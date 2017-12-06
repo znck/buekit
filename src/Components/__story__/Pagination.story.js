@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import Pagination from './Pagination.vue'
+import Pagination from '../Pagination.vue'
 
 import 'bulma'
 

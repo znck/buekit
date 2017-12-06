@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Notification from './Notification.vue'
-import Delete from './Delete.vue'
+import Notification from '../Notification.vue'
+import Delete from '../Delete.vue'
 
 const components = {Notification, Delete}
 function render(template) {

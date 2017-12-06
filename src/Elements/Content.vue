@@ -1,32 +1,27 @@
 <script>
-import { cssModule, mergeData } from '../utils'
-import { abstract, sizes, tag } from '../mixins'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
+import { createTag } from '../mixins'
+import { sizes } from '../mixins'
 
 export default {
   name: 'Content',
   functional: true,
-  mixins: [abstract, sizes, tag],
+  mixins: [createTag('div', true)],
+  props: { size: PropTypes.oneOf(sizes) },
   render (h, ctx) {
-    const s = cssModule(ctx.$style)
-    const { abstract, size, tag } = ctx.props
+    const _ = styleResolver(ctx.$style)
+    const { size, tag } = ctx.props
 
     const styles = [
-      s('content'),
-      size && s('is-' + size)
+      _('content'),
+      size && _('is-' + size)
     ]
-
-    if (!abstract) return h(tag, mergeData({ class: styles }, ctx.data), ctx.children)
-
-    // Abstract mode.
-    if (process.env.NODE_ENV !== 'production' && ctx.children.length !== 1) {
-      console.warn('Content is an abstract component. It requires exactly one child.')
+    if (tag !== false) {
+      return style(h(tag || 'div', ctx.data, ctx.children), styles)
     }
 
-    const vnode = ctx.children[0]
-
-    vnode.data = mergeData({ class: styles }, ctx.data, ctx.children)
-
-    return vnode
+    return style(ctx.children[0], styles)
   }
 }
 </script>

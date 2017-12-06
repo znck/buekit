@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import xProgress from './Progress.vue'
+import xProgress from '../Progress.vue'
 
 const components = {xProgress}
 function render(template) {

@@ -1,13 +1,13 @@
 import {storiesOf} from '@storybook/vue'
 
-import Modal from './Modal.vue'
-import xButton from '../Elements/Button.vue'
-import Box from '../Elements/Box.vue'
-import xContent from '../Elements/Content.vue'
-import Media from '../Layout/Media.vue'
-import Level from '../Layout/Level.vue'
-import xImage from '../Elements/Image.vue'
-import Icon from '../Elements/Icon.vue'
+import Modal from '../Modal.vue'
+import xButton from '../../Elements/Button.vue'
+import Box from '../../Elements/Box.vue'
+import xContent from '../../Elements/Content.vue'
+import Media from '../../Layout/Media.vue'
+import Level from '../../Layout/Level.vue'
+import xImage from '../../Elements/Image.vue'
+import Icon from '../../Elements/Icon.vue'
 
 import 'bulma'
 

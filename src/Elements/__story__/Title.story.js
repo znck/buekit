@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Subtitle from './Subtitle.vue'
-import Title from './Title.vue'
+import Subtitle from '../Subtitle.vue'
+import Title from '../Title.vue'
 
 const components = {Subtitle, Title}
 function render(template) {

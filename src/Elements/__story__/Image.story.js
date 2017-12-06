@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import xImage from './Image.vue'
+import xImage from '../Image.vue'
 
 const components = {xImage}
 function render(template) {

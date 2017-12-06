@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import xMessage from './Message.vue'
+import xMessage from '../Message.vue'
 
 const components = {xMessage}
 function render(template) {

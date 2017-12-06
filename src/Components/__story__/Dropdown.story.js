@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Dropdown from './Dropdown.vue'
-import Active from '../Abstract/Active.vue'
+import Dropdown from '../Dropdown.vue'
+import Active from '../../Abstract/Active.vue'
 
 const components = {Active, Dropdown}
 function render(template) {

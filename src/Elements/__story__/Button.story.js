@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import xButton from './Button.vue'
+import xButton from '../Button.vue'
 
 const components = {xButton}
 

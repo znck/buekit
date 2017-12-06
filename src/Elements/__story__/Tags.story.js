@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Tags from './Tags.vue'
-import Tag from './Tag.vue'
+import Tags from '../Tags.vue'
+import Tag from '../Tag.vue'
 
 const components = {Tag, Tags}
 function render(template) {

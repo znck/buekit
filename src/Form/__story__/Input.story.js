@@ -1,8 +1,8 @@
 import {storiesOf} from '@storybook/vue'
 
-import xInput from './Input.vue'
-import Field from './Field.vue'
-import Control from './Control.vue'
+import xInput from '../Input.vue'
+import Field from '../Field.vue'
+import Control from '../Control.vue'
 
 const components = {Field, xInput, Control}
 function render(template) {

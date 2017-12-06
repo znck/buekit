@@ -1,6 +1,6 @@
 import {storiesOf} from '@storybook/vue'
 
-import Tile from './Tile.vue'
+import Tile from '../Tile.vue'
 
 // Import 'bulma'
 

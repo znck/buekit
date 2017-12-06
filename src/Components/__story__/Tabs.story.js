@@ -1,7 +1,7 @@
 import {storiesOf} from '@storybook/vue'
 
-import Tabs from './Tabs.vue'
-import Icon from '../Elements/Icon.vue'
+import Tabs from '../Tabs.vue'
+import Icon from '../../Elements/Icon.vue'
 
 const components = {Tabs, Icon}
 function render(template) {
