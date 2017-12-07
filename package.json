@@ -10,7 +10,8 @@
     "deploy": "npm run deploy:storybook",
     "deploy:storybook": "surge",
     "predeploy:storybook": "npm run build:storybook",
-    "build:storybook": "build-storybook -c .storybook -o .out/storybook"
+    "build:storybook": "build-storybook -c .storybook -o .out/storybook",
+    "prepublishOnly": "./publish.sh \"${AUTO_PUBLISH:-fail}\""
   },
   "repository": {
     "type": "git",
