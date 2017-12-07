@@ -1,5 +1,5 @@
 <script>
-import { addStyleToVnode } from '../utils'
+import { style, styleResolver } from '../utils'
 
 export default {
   name: 'Active',
@@ -12,7 +12,9 @@ export default {
     },
   },
   render (h, ctx) {
-    return addStyleToVnode(ctx.children[0], ctx.props.active && ctx.$style['is-active'])
+    const _ = styleResolver(ctx.$style)
+    
+    return style(ctx.children[0], _('active'))
   }
 }
 </script>

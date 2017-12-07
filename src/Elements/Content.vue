@@ -2,7 +2,7 @@
 import PropTypes from '@znck/prop-types'
 import { style, styleResolver } from '../utils'
 import { createTag } from '../mixins'
-import { sizes } from '../mixins'
+import { sizes } from '../shared'
 
 export default {
   name: 'Content',

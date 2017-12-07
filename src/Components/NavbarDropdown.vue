@@ -1,12 +1,13 @@
 <script>
-import { addStyleToVnode, mergeData, cssModule } from '../utils'
+import PropTypes from '@znck/prop-types'
+import { style, styleResolver } from '../utils'
 import NavbarItem from './NavbarItem.vue'
 
 export default {
   name: 'NavbarDropdown',
   functional: true,
   props: {
-    active: { default: false, type: Boolean },
+    active: PropTypes.bool.value(false),
     boxed: { default: false, type: Boolean },
     hoverable: { default: false, type: Boolean },
     right: { default: false, type: Boolean },
@@ -14,9 +15,9 @@ export default {
   },
   render (h, ctx) {
     const { active, boxed, hoverable, right, title } = ctx.props
-    const s = cssModule(ctx.$style)
+    const s = styleResolver(ctx.$style)
 
-    return addStyleToVnode(
+    return style(
       h(NavbarItem, ctx.data, [
         h('a', { class: s('navbar-link') }, title),
         h('div', { class: [
@@ -24,7 +25,7 @@ export default {
           boxed && s('is-boxed'),
           right && s('is-right')
         ] }, ctx.children.map(
-          node => node && node.tag === 'hr' ? addStyleToVnode(
+          node => node && node.tag === 'hr' ? style(
             node, s('navbar-divider')
           ) : node
         ) )
