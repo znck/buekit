@@ -1,17 +1,16 @@
 <script>
+import PropTypes from '@znck/prop-types'
 import { style, styleResolver, isIgnoredVnode } from '../utils'
 import { sizes } from '../mixins'
-
-const types = toMap(['boxed', 'toggle', 'fullwidth'])
 
 export default {
   name: 'Tabs',
   functional: true,
   props: {
-    active: { type: Number, required: true },
-    centered: { default: false, type: Boolean },
-    right: { default: false, type: Boolean },
-    type: { type: String, validator: type => type === undefined || type in types }
+    active: PropTypes.number.isRequired,
+    centered: PropTypes.bool.value(false),
+    right: PropTypes.bool.value(false),
+    type: PropTypes.oneOf('boxed', 'toggle', 'fullwidth')
   },
   render (h, ctx) {
     const s = cssModule(ctx.$style)
