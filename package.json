@@ -13,6 +13,16 @@
     "build:storybook": "build-storybook -c .storybook -o .out/storybook",
     "prepublishOnly": "./publish.sh \"${AUTO_PUBLISH:-fail}\""
   },
+  "files": [
+    "src/",
+    "LICENCE",
+    "README.md",
+    ".babelrc",
+    ".postcssrc.js"
+  ],
+  "main": "src/index.js",
+  "module": "src/index.js",
+  "js:next": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/znck/bulma.vue"
