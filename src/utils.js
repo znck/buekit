@@ -1,4 +1,4 @@
-import { flatten } from 'lodash'
+import { flatten, assign } from 'lodash'
 
 export function toObject(any) {
 	return (any === null || typeof any !== 'object') ? {} : any
@@ -13,10 +13,11 @@ export function toArray(any) {
 export function style(node, ...styles) {
   if (isIgnoredVnode(node)) return node
 
-  node.data = {
-    ...node.data,
-    class: flatten([styles, toArray(node.data.class)]),
-  }
+  node.data = assign(
+    {},
+    node.data,
+    {class: flatten([styles, toArray(node.data.class)])}
+  )
 
   return node
 }
