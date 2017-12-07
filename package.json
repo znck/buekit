@@ -1,6 +1,6 @@
 {
   "name": "buekit",
-  "version": "0.0.0",
+  "version": "0.0.0-3",
   "description": "Bulma based Vue components",
   "scripts": {
     "test": "jest",
