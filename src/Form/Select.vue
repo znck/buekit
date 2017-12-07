@@ -50,7 +50,7 @@ export default {
       h('div', {}, [h(InputSelect, data, options)]),
       _('select'),
       props.multiple && _('is-multiple'),
-      input.style(props, $style)
+      input.styles(props, $style)
     )
   }
 }
