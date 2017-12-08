@@ -2,6 +2,7 @@
 import  { isFunction } from 'lodash'
 import PropTypes from '@znck/prop-types'
 
+import { createTag } from '../mixins'
 import { styleResolver, style } from '../utils'
 import { colors } from '../shared'
 
@@ -10,6 +11,7 @@ import Burger from './NavbarBurger.vue'
 export default {
   name: 'Navbar',
   data: () => ({ active: false }),
+  mixins: [ createTag() ],
   props: {
     /**
      * Background color of navbar.
@@ -23,12 +25,6 @@ export default {
      * @since Version 0.0.0
      */
     noBurger: PropTypes.bool.value(false),
-    /**
-     * Wrapping html tag
-     * @version 0.0.0
-     * @since Version 0.0.0
-     */
-    tag: PropTypes.string.value('div'),
     /**
      * With transparent background
      * @version 0.0.0
@@ -50,12 +46,13 @@ export default {
     const needsMenu = left || right
 
     if (!noBurger) {
-      brand.push(
+      brand = [
+        ...brand,
         h(Burger, {
           class: active && _('is-active'),
           on: { click: () => this.activate(!active) }
         })
-      )
+      ]
     }
 
     return style(

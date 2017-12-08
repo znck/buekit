@@ -7,7 +7,7 @@ export default (tag = 'div', abstract = false) => ({
      * @version 0.0.0
      * @since Version 0.0.0
      */
-		tag: abstract ? PropTypes.oneOf(
+		tag: abstract ? PropTypes.oneOfType(
       PropTypes.string,
       PropTypes.bool
     ).value(tag) : PropTypes.string.value(tag)
