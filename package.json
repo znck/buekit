@@ -34,7 +34,7 @@
   },
   "homepage": "https://github.com/znck/bulma.vue#readme",
   "dependencies": {
-    "@znck/prop-types": "^0.2.2",
+    "@znck/prop-types": "^0.3.0",
     "bulma": "^0.6.1",
     "lodash": "^4.17.4",
     "vue": "^2.5.2"
