@@ -5,7 +5,8 @@ import { devices, columns as sizes } from '../shared'
 import { createTag } from '../mixins'
 
 const sizeType = name => PropTypes.oneOfType(
-  PropTypes.number.validate(v => 1 < v && v < 12),
+  PropTypes.number.validate(v => 1 <= v && v <= 12),
+  PropTypes.string.validate(v => (x => 1 <= x && x <= 12)(Number(x))),
   PropTypes.oneOf(sizes)
 ).modifiers(name, devices)
 
