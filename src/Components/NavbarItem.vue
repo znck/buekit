@@ -8,7 +8,7 @@ export default {
   mixins: [createTag('div', true)],
   render (h, ctx) {
     const { abstract, tag } = ctx.props
-    const _ = styleMedia(ctx.$style)
+    const _ = styleResolver(ctx.$style)
 
     const styles = [
       _('navbar-item')
