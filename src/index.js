@@ -1,4 +1,4 @@
-import {each, assign} from 'lodash'
+import {each} from 'lodash'
 
 import * as Abstract from './Abstract'
 import * as Columns from './Columns'
@@ -21,8 +21,7 @@ function register(Vue, components, prefix) {
 }
 
 export default function BulmaVue(Vue, options) {
-	const components = assign(
-    {},
+	const groups = [
 		Abstract,
 		Columns,
 		Components,
@@ -30,7 +29,8 @@ export default function BulmaVue(Vue, options) {
 		Form,
 		Layout,
 		Modifiers
-  )
+	]
+	const prefix = (options && options.prefix) || 'Bu'
 
-	register(Vue, components, (options && options.prefix) || 'Bu')
+	each(groups, components => register(Vue, components, prefix))
 }

@@ -1,7 +1,7 @@
-import { flatten, assign } from 'lodash'
+import { flatten, assign, isObject } from 'lodash'
 
 export function toObject(any) {
-	return (any === null || typeof any !== 'object') ? {} : any
+	return (any === null || isObject(any)) ? {} : any
 }
 
 export function toArray(any) {

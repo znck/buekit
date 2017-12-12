@@ -11,18 +11,19 @@
     "deploy:storybook": "surge",
     "predeploy:storybook": "npm run build:storybook",
     "build:storybook": "build-storybook -c .storybook -o .out/storybook",
+    "prepare": "babel -D --ignore '**/__story__/*,**/__tests__/*' -d lib src",
     "prepublishOnly": "./publish.sh \"${AUTO_PUBLISH:-fail}\""
   },
   "files": [
-    "src/",
+    "lib/",
     "LICENCE",
     "README.md",
     ".babelrc",
     ".postcssrc.js"
   ],
-  "main": "src/index.js",
-  "module": "src/index.js",
-  "js:next": "src/index.js",
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "js:next": "lib/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/znck/bulma.vue"
@@ -34,13 +35,14 @@
   },
   "homepage": "https://github.com/znck/bulma.vue#readme",
   "dependencies": {
-    "@znck/prop-types": "^0.3.2",
+    "@znck/prop-types": "^0.3.3",
     "bulma": "^0.6.1",
     "lodash": "^4.17.4",
     "vue": "^2.5.2"
   },
   "devDependencies": {
     "@storybook/vue": "^3.2.12",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",
     "babel-plugin-transform-object-assign": "^6.22.0",
