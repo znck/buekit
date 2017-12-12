@@ -1,5 +1,5 @@
 <script>
-import { isString } from 'lodash'
+import { isString } from 'lodash-es'
 import { style, styleResolver } from '../utils'
 import { createTag } from '../mixins'
 

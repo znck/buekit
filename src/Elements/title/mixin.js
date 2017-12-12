@@ -1,4 +1,4 @@
-import { isString } from 'lodash'
+import { isString } from 'lodash-es'
 import PropTypes from '@znck/prop-types'
 import { style, styleResolver } from '../../utils'
 import { createTag } from '../../mixins'

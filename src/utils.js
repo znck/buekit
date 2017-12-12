@@ -1,4 +1,4 @@
-import { flatten, assign, isObject } from 'lodash'
+import { flatten, assign, isObject } from 'lodash-es'
 
 export function toObject(any) {
 	return (any === null || isObject(any)) ? {} : any

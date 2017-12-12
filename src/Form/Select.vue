@@ -1,5 +1,5 @@
 <script>
-import { every } from 'lodash'
+import { every } from 'lodash-es'
 import PropTypes from '@znck/prop-types'
 import { style, styleResolver, toArray, toObject } from '../utils'
 import * as input from '../mixins/input'

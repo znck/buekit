@@ -1,5 +1,5 @@
 <script>
-import  { isFunction } from 'lodash'
+import  { isFunction } from 'lodash-es'
 import PropTypes from '@znck/prop-types'
 
 import { createTag } from '../mixins'

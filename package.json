@@ -37,7 +37,7 @@
   "dependencies": {
     "@znck/prop-types": "^0.3.3",
     "bulma": "^0.6.1",
-    "lodash": "^4.17.4",
+    "lodash-es": "^4.17.4",
     "vue": "^2.5.2"
   },
   "devDependencies": {

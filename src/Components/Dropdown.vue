@@ -1,6 +1,6 @@
 <script>
 import PropTypes from '@znck/prop-types'
-import { isFunction } from 'lodash'
+import { isFunction } from 'lodash-es'
 import { styleResolver, style, toArray, call } from '../utils'
 import { createTag } from '../mixins'
 import Button from '../Elements/Button.vue'

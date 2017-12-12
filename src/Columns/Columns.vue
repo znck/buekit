@@ -1,6 +1,6 @@
 <script>
 import PropType, { normalize } from '@znck/prop-types'
-import { isBoolean } from 'lodash'
+import { isBoolean } from 'lodash-es'
 
 import { styleResolver, style } from '../utils'
 import { createTag } from '../mixins'

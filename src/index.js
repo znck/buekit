@@ -1,4 +1,4 @@
-import {each} from 'lodash'
+import {each} from 'lodash-es'
 
 import * as Abstract from './Abstract'
 import * as Columns from './Columns'

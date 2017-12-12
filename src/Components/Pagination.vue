@@ -1,6 +1,6 @@
 <script>
 import PropTypes from '@znck/prop-types'
-import { isNumber } from 'lodash'
+import { isNumber } from 'lodash-es'
 import { style, styleResolver, call } from '../utils'
 import { sizes } from '../shared'
 
