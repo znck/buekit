@@ -221,7 +221,7 @@ storiesOf(Columns.name, module)
 
         <p>Different column sizes per breakpoint </p>
         <Columns>
-          <Column :size="['three-quarters-mobile', 'two-third-tablet', 'half-desktop', 'one-third-widescreen', 'one-fourth-fullhd']">${p('mobile: three-quaters, tablet: two-thirds, desktop: half, widescreen: one-third, fullhd: one-fourth')}</Column>
+          <Column size$mobile="three-quarters" size$tablet="two-thirds" size$desktop="half" size$widescreen="one-third" size$fullhd="one-quarter">${p('mobile: three-quaters, tablet: two-thirds, desktop: half, widescreen: one-third, fullhd: one-fourth')}</Column>
           <Column>${p(2)}</Column>
           <Column>${p(3)}</Column>
           <Column>${p(4)}</Column>
@@ -334,12 +334,12 @@ storiesOf(Columns.name, module)
         </Columns>
 
         <p>Vertically Centered</p><br>
-        <Columns centered=vertically style="height: 250px; background: #ccc">
+        <Columns vcentered style="height: 250px; background: #ccc">
           <Column narrow>${p('Centered Column')}</Column>
         </Columns>
 
         <p>Vertically & Horizontally Centered</p><br>
-        <Columns centered=both style="height: 250px; background: #ccc">
+        <Columns centered vcentered style="height: 250px; background: #ccc">
           <Column narrow>${p('Centered Column')}</Column>
         </Columns>
       </div>

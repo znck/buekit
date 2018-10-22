@@ -1,4 +1,4 @@
-import {shallow} from 'vue-test-utils'
+import {shallow} from '@vue/test-utils'
 import {createRenderer} from 'vue-server-renderer'
 
 import Column from '../Column.vue'
@@ -15,7 +15,7 @@ function snapshots(options) {
       }
     })
 
-    // expect(wrapper.contains('p')).toBe(true) TODO: Enable this, when vue-test-utils is fixed.
+    expect(wrapper.contains('p')).toBe(true)
 
     renderer.renderToString(wrapper.vm, (err, str) => {
         if (err) {
@@ -35,10 +35,20 @@ describe('Column.vue', () => {
     {'narrow.mobile': true},
     {'narrow.mobile': true, 'narrow.desktop': true},
     {offset: 'half'},
-    {offset: 'half', 'offset.mobile': 3},
+    {offset: 'half', 'offset$mobile': 3},
     {offset: 2},
     {size: 'half'},
-    {size: 'half', 'size.mobile': 12},
+    {size: 'half', 'size$mobile': 12},
     {size: 3}
   ])
+
+  it(`size props`, () => {
+    const wrapper = shallow(Column, {
+      context: {
+        props: { size: 'half', 'size$mobile': 12 },
+      }
+    })
+
+    expect(wrapper.classes()).toEqual(['column', 'is-half', 'is-12-mobile'])
+  })
 })

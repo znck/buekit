@@ -1,14 +1,14 @@
 <script>
 import PropTypes, { normalize } from '@znck/prop-types'
 import { styleResolver, style } from '../utils'
-import { devices, columns as sizes } from '../shared'
+import { devices, additionalDevices, columns as sizes } from '../shared'
 import { createTag } from '../mixins'
 
-const sizeType = name => PropTypes.oneOfType(
+const sizeType = (name, extras = []) => PropTypes.oneOfType(
   PropTypes.number.validate(v => 1 <= v && v <= 12),
   PropTypes.string.validate(v => (x => 1 <= x && x <= 12)(Number(x))),
   PropTypes.oneOf(sizes)
-).modifiers(name, devices)
+).modifiers(name, [].concat(devices, extras))
 
 let normalizer
 const props = (props, _) => {
@@ -59,7 +59,7 @@ export default {
      * @since Version 0.0.0
      * @modifiers mobile tablet desktop
      */
-    ...sizeType('size')
+    ...sizeType('size', additionalDevices)
   },
 
   render (h, ctx) {

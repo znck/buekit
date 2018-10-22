@@ -1,17 +1,21 @@
-import {shallow} from 'vue-test-utils'
+import {shallow} from '@vue/test-utils'
 import {createRenderer} from 'vue-server-renderer'
 
 import Columns from '../Columns.vue'
 
 const renderer = createRenderer()
 
+function renderWithProps(props) {
+  return shallow(Columns, {
+    context: { props },
+    slots: {default: '<p>content</p>'}
+  })
+}
+
 function snapshots(options) {
 	options.forEach(
     option => it('matches snapshot: ' + JSON.stringify(option), () => {
-      const wrapper = shallow(Columns, {
-        context: {props: option},
-        slots: {default: '<p>content</p>'}
-      })
+      const wrapper = renderWithProps(option)
 
       renderer.renderToString(wrapper.vm, (err, str) => {
         if (err) {
@@ -34,5 +38,11 @@ describe('Columns.vue', () => {
     {tablet: true},
     {desktop: true},
     {multiline: true}
-	])
+  ])
+  
+  test('custom tag', () => {
+    const wrapper = renderWithProps({ tag: 'section' })
+
+    expect(wrapper.is('section.columns')).toEqual(true)
+  })
 })

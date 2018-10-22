@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style lang="scss" module>
-@import '~bulma/sass/utilities/_all.sass';
 @import '../_base.scss';
+@import '~bulma/sass/utilities/_all.sass';
 @import '~bulma/sass/elements/form.sass';
 </style>

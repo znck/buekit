@@ -4,4 +4,5 @@ export const columns = [
   'four-fifths', 'three-fifths', 'two-fifths', 'one-fifth'
 ]
 export const devices = ['mobile', 'tablet', 'desktop']
+export const additionalDevices = ['widescreen', 'fullhd']
 export const sizes = ['small', 'normal', 'medium', 'large']

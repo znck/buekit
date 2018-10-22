@@ -11,19 +11,19 @@
     "deploy:storybook": "surge",
     "predeploy:storybook": "npm run build:storybook",
     "build:storybook": "build-storybook -c .storybook -o .out/storybook",
-    "prepare": "babel -D --ignore '**/__story__/*,**/__tests__/*' -d lib src",
     "prepublishOnly": "./publish.sh \"${AUTO_PUBLISH:-fail}\""
   },
   "files": [
-    "lib/",
+    "dist/",
+    "src/",
     "LICENCE",
     "README.md",
     ".babelrc",
     ".postcssrc.js"
   ],
-  "main": "lib/index.js",
-  "module": "lib/index.js",
-  "js:next": "lib/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "js:next": "dist/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/znck/bulma.vue"
@@ -35,32 +35,28 @@
   },
   "homepage": "https://github.com/znck/bulma.vue#readme",
   "dependencies": {
-    "@znck/prop-types": "^0.3.3",
-    "bulma": "^0.6.1",
+    "@znck/prop-types": "^0.3.4",
+    "bulma": "^0.6.2",
     "lodash-es": "^4.17.4",
-    "vue": "^2.5.2"
+    "vue": "^2.5.13"
   },
   "devDependencies": {
-    "@storybook/vue": "^3.2.12",
-    "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.0.1",
-    "babel-jest": "^21.2.0",
-    "babel-plugin-transform-object-assign": "^6.22.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "babel-preset-vue-app": "^1.3.1",
-    "eslint": "^4.8.0",
-    "eslint-plugin-vue": "^3.13.1",
+    "@storybook/vue": "^3.3.10",
+    "@vue/test-utils": "^1.0.0-beta.10",
+    "babel-eslint": "^8.2.1",
+    "babel-jest": "^22.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-vue-app": "^2.0.0",
+    "eslint": "^4.19.1",
+    "eslint-plugin-vue": "^4.2.0",
     "font-awesome": "^4.7.0",
-    "jest": "^21.2.1",
-    "jest-serializer-vue": "^0.2.0",
-    "jest-vue": "^0.8.1",
-    "node-sass": "^4.5.3",
+    "jest": "^22.1.4",
+    "node-sass": "^4.9.0",
     "sass-loader": "^6.0.6",
-    "vue-loader": "^13.3.0",
-    "vue-server-renderer": "^2.5.2",
-    "vue-template-compiler": "^2.5.2",
-    "vue-test-utils": "^1.0.0-beta.1"
+    "vue-jest": "^1.4.0",
+    "vue-loader": "^13.7.0",
+    "vue-server-renderer": "^2.5.13",
+    "vue-template-compiler": "^2.5.13"
   },
   "jest": {
     "moduleFileExtensions": [
@@ -70,13 +66,13 @@
     ],
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
-      ".*\\.(vue)$": "<rootDir>/node_modules/jest-vue"
+      ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
     "moduleNameMapper": {
       "^@/(.*)$": "<rootDir>/src/$1"
     },
-    "snapshotSerializers": [
-      "<rootDir>/node_modules/jest-serializer-vue"
+    "transformIgnorePatterns": [
+      "/node_modules/(?!lodash-es).+\\.js$"
     ],
     "mapCoverage": true
   }

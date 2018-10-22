@@ -1,19 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Columns.vue matches snapshot: {"centered":true} 1`] = `<div class="columns is-centered"></div>`;
+exports[`Columns.vue matches snapshot: {"centered":true} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns is-centered\\"><p>content</p></div>"`;
 
-exports[`Columns.vue matches snapshot: {"desktop":true} 1`] = `<div class="columns is-desktop"></div>`;
+exports[`Columns.vue matches snapshot: {"desktop":true} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns is-desktop\\"><p>content</p></div>"`;
 
-exports[`Columns.vue matches snapshot: {"gap":8} 1`] = `<div class="columns is-variable is-8"></div>`;
+exports[`Columns.vue matches snapshot: {"gap":8} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns is-variable is-8\\"><p>content</p></div>"`;
 
-exports[`Columns.vue matches snapshot: {"gap":false} 1`] = `<div class="columns is-gapless"></div>`;
+exports[`Columns.vue matches snapshot: {"gap":false} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns is-gapless\\"><p>content</p></div>"`;
 
-exports[`Columns.vue matches snapshot: {"mobile":true} 1`] = `<div class="columns is-mobile"></div>`;
+exports[`Columns.vue matches snapshot: {"mobile":true} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns is-mobile\\"><p>content</p></div>"`;
 
-exports[`Columns.vue matches snapshot: {"multiline":true} 1`] = `<div class="columns is-multiline"></div>`;
+exports[`Columns.vue matches snapshot: {"multiline":true} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns is-multiline\\"><p>content</p></div>"`;
 
-exports[`Columns.vue matches snapshot: {"tablet":true} 1`] = `<div class="columns"></div>`;
+exports[`Columns.vue matches snapshot: {"tablet":true} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns\\"><p>content</p></div>"`;
 
-exports[`Columns.vue matches snapshot: {"vcentered":true} 1`] = `<div class="columns is-vcentered"></div>`;
+exports[`Columns.vue matches snapshot: {"vcentered":true} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns is-vcentered\\"><p>content</p></div>"`;
 
-exports[`Columns.vue matches snapshot: {} 1`] = `<div class="columns"></div>`;
+exports[`Columns.vue matches snapshot: {} 1`] = `"<div data-server-rendered=\\"true\\" class=\\"columns\\"><p>content</p></div>"`;

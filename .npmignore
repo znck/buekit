@@ -1,10 +1,9 @@
-__tests__
-__story__
-__snapshots__
+__tests__/
+__story__/
+__snapshots__/
 .storybook/
 .out/
 .vscode/
 .eslintrc/
-src/
 publish.sh
 build.sh
