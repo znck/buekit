@@ -1,3 +1,3 @@
 # Bulma based Vue Components
 
-> [Work in Progress] DO NOT USE.
+> [WARNING] It's only a prototype. DO NOT USE IN PRODUCTION. (or may be clone the repository and make it production ready)
